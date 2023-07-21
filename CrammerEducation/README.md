@@ -9,4 +9,5 @@ Currently, two official plugins are available:
 
 
 
-base made
+base made.
+staging made
