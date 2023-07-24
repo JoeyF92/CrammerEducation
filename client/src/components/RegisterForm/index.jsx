@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function RegisterForm({ firstName, setFirstName, lastName, setLastName, email, setUsername, password, setPassword, message, setMessage }) {
+export default function RegisterForm({ firstName, setFirstName, lastName, setLastName, email, setEmail, password, setPassword, message, setMessage }) {
 
 
   function handleFirstName(e) {
@@ -12,7 +12,7 @@ export default function RegisterForm({ firstName, setFirstName, lastName, setLas
   }
 
   function handleEmail(e) {
-    setUsername(e.target.value)
+    setEmail(e.target.value)
   }
 
   function handlePassword(e) {
