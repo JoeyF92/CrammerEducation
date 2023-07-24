@@ -23,7 +23,8 @@ export default function LoginForm({email, setEmail, password, setPassword, messa
         setMessage('User logged in successfully.');
         setTimeout(() => {
           setMessage('')
-        }, 5000);
+          window.location = "/"
+        }, 500);
       })
       .catch((err) => {
         console.log(err)
