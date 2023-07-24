@@ -3,7 +3,8 @@ const cors = require("cors");
 
 const logRoutes = require("./middleware/logger");
 const userRouter = require("./routers/user");
-const deckRouter = require ("./routers/decks");
+const deckRouter = require("./routers/decks");
+const cardsRouter = require("./routers/cards");
 
 const app = express();
 
@@ -19,10 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", userRouter);
-<<<<<<< HEAD
-app.use("/cards", userRouter);
-=======
-app.use("/decks", deckRouter)
->>>>>>> d48102f2c6aabfd9e956fc2b9351b79733e33907
+app.use("/decks", deckRouter);
+app.use("/cards", cardsRouter);
 
 module.exports = app;
