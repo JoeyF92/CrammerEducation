@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 
-export default function RegisterForm() {
+export default function RegisterForm({ firstName, setFirstName, lastName, setLastName, username, setUsername, password, setPassword, message, setMessage }) {
 
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
 
   function handleFirstName(e) {
     setFirstName(e.target.value)
@@ -25,6 +21,39 @@ export default function RegisterForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    if (firstName.length > 0 && lastName.length > 0 && username.length > 0 && password.length > 0) {
+      fetch('http://localhost:3000/register', {
+        method: 'POST',
+        body: JSON.stringify({first_name: firstName, last_name: lastName, email: username, password: password}),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        setMessage('User registered successfully.');
+        setTimeout(() => {
+          setMessage('');
+        }, 5000);
+      })
+      .catch((err) => {
+        console.log(err.message);
+        setMessage('There was a problem with your registration.');
+        setTimeout(() => {
+          setMessage('');
+        }, 5000);
+      });
+      setFirstName('');
+      setLastName('');
+      setUsername('');
+      setPassword('');
+    } else {
+      setMessage('Please fill in all fields.');
+      setTimeout(() => {
+        setMessage('');
+      }, 5000);
+    }
   }
 
   return (
@@ -38,6 +67,7 @@ export default function RegisterForm() {
       <label>Password: <input type="password" value={password} onChange={handlePassword} /></label>
       <br />
       <input type="submit" value="Register" />
+      <p className='message'>{message}</p>
     </form>
   )
 }
