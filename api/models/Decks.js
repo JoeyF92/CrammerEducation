@@ -25,15 +25,15 @@ class Deck {
     }
 
     static async create(data) {
-        const{deck_name, subject, tags, likes, image, user_id} = data;  
-        const response = await db.query('INSERT INTO decks (deck_name, subject, tags, likes, image, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;', [deck_name, subject, tags, likes, image, user_id]);
+        const{deck_name, subject, tags, image, likes=0, user_id} = data;  
+        const response = await db.query('INSERT INTO decks (deck_name, subject, tags, image, likes, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;', [deck_name, subject, tags, image, likes, user_id]);
 
         return response.rows.map(w => new Deck(w))
     }
 
     async update(data) {
         const response = await db.query("UPDATE decks SET likes = $1 WHERE deck_id = $2 RETURNING deck_id, likes;",
-            [ this.likes + data.votes, this.id ]);
+            [ this.likes + data.likes, this.id ]);
         if (response.rows.length != 1) {
             throw new Error("Unable to update likes.")
         }
