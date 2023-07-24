@@ -9,5 +9,6 @@ userRouter.post("/login", userController.login);
 userRouter.delete("/:id", userController.destroy);
 userRouter.patch("/:id", userController.update);
 userRouter.get("/:id", userController.show);
+userRouter.get("/:id/liked", userController.getLiked)
 
 module.exports = userRouter;
