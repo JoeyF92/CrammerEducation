@@ -2,13 +2,11 @@ import React from "react";
 
 export default function LoginForm({email, setEmail, password, setPassword, message, setMessage}) {
 
-
-
   const handleSubmit = (e) => {
     e.preventDefault()
 
     if (email.length > 0 && password.length > 0) {
-      fetch('http://localhost:3000/login', {
+      fetch('http://localhost:3000/users/login', {
         method: 'POST',
         body: JSON.stringify({email: email, password: password}),
         headers: {
@@ -52,4 +50,5 @@ export default function LoginForm({email, setEmail, password, setPassword, messa
       <p className='message'>{message}</p>
     </form>
   )
+
 }

@@ -5,7 +5,7 @@ export default function RegisterPage() {
 
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
 
@@ -15,7 +15,7 @@ export default function RegisterPage() {
       <RegisterForm 
         firstName={firstName} setFirstName={setFirstName}
         lastName={lastName} setLastName={setLastName}
-        username={username} setUsername={setUsername}
+        email={email} setEmail={setEmail}
         password={password} setPassword={setPassword}
         message={message} setMessage={setMessage}
       />

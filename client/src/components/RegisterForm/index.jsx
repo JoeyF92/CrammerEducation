@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function RegisterForm({ firstName, setFirstName, lastName, setLastName, username, setUsername, password, setPassword, message, setMessage }) {
+export default function RegisterForm({ firstName, setFirstName, lastName, setLastName, email, setUsername, password, setPassword, message, setMessage }) {
 
 
   function handleFirstName(e) {
@@ -11,7 +11,7 @@ export default function RegisterForm({ firstName, setFirstName, lastName, setLas
     setLastName(e.target.value)
   }
 
-  function handleUsername(e) {
+  function handleEmail(e) {
     setUsername(e.target.value)
   }
 
@@ -22,10 +22,10 @@ export default function RegisterForm({ firstName, setFirstName, lastName, setLas
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (firstName.length > 0 && lastName.length > 0 && username.length > 0 && password.length > 0) {
-      fetch('http://localhost:3000/register', {
+    if (firstName.length > 0 && lastName.length > 0 && email.length > 0 && password.length > 0) {
+      fetch('http://localhost:3000/users/register', {
         method: 'POST',
-        body: JSON.stringify({first_name: firstName, last_name: lastName, email: username, password: password}),
+        body: JSON.stringify({first_name: firstName, last_name: lastName, email: email, password: password}),
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         },
@@ -62,7 +62,7 @@ export default function RegisterForm({ firstName, setFirstName, lastName, setLas
       <br />
       <label>Last Name: <input type="text" value={lastName} onChange={handleLastName} /></label>
       <br />
-      <label>Username: <input type="text" value={username} onChange={handleUsername} /></label>
+      <label>Email: <input type="text" value={email} onChange={handleEmail} /></label>
       <br />
       <label>Password: <input type="password" value={password} onChange={handlePassword} /></label>
       <br />
