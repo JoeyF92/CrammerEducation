@@ -1,12 +1,14 @@
 const db = require("../database/connect");
+const Deck = require("./Decks")
 
 class User {
-  constructor({ user_id, first_name, last_name, email, password }) {
+  constructor({ user_id, first_name, last_name, email, password, liked }) {
     this.id = user_id;
     this.first_name = first_name;
     this.last_name = last_name;
     this.email = email;
     this.password = password;
+    this.liked = liked;
   }
 
   static async getOneById(id) {
@@ -17,6 +19,11 @@ class User {
       throw new Error("Unable to locate user.");
     }
     return new User(response.rows[0]);
+  }
+
+  static async getLiked (id) {
+    const response = await db.query("SELECT decks.* FROM decks JOIN users ON decks.deck_id = ANY(users.liked) WHERE users.user_id = $1;", [id])
+    return response.rows.map((deckData) => new Deck(deckData));
   }
 
   static async getOneByEmail(email) {

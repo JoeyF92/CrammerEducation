@@ -10,7 +10,7 @@ CREATE TABLE users (
     last_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password CHAR(60) UNIQUE NOT NULL,
-    liked INT DEFAULT 0,
+    liked INT[] NULL,
     PRIMARY KEY (user_id)
 );
 
@@ -47,8 +47,8 @@ CREATE TABLE cards (
 
 
 INSERT INTO users (first_name, last_name, email, password, liked)
-VALUES ('John', 'Doe', 'john.doe@example.com', 'password123', 0),
-       ('Jane', 'Smith', 'jane.smith@example.com', 'myp@ssword', 0);
+VALUES ('John', 'Doe', 'john.doe@example.com', 'password123', '{1,2}'),
+       ('Jane', 'Smith', 'jane.smith@example.com', 'myp@ssword', '{2}');
 
 
 INSERT INTO decks (deck_name, subject, tags, likes, image, user_id)
