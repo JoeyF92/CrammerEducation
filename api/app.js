@@ -18,5 +18,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", userRouter);
+app.use("/cards", userRouter);
 
 module.exports = app;
