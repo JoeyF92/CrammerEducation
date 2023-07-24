@@ -40,6 +40,35 @@ class User {
     const newUser = await User.getOneById(newId);
     return newUser;
   }
+  async destroy() {
+    const response = await db.query("DELETE FROM users WHERE user_id = $1", [
+      this.id,
+    ]);
+    if (response.rowCount !== 1) {
+      throw new Error("Unable to locate user.");
+    }
+    return "User deleted successfully.";
+  }
+
+  async update(data) {
+    const { first_name, last_name, email, password } = data;
+
+    const response = await db.query(
+      "UPDATE users SET first_name = $1, last_name = $2, email = $3, password = $4 WHERE user_id = $5 RETURNING *;",
+      [first_name, last_name, email, password, this.id]
+    );
+
+    if (response.rows.length !== 1) {
+      throw new Error("Unable to update user.");
+    }
+
+    this.first_name = response.rows[0].first_name;
+    this.last_name = response.rows[0].last_name;
+    this.email = response.rows[0].email;
+    this.password = response.rows[0].password;
+
+    return this;
+  }
 }
 
 module.exports = User;
