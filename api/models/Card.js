@@ -9,8 +9,10 @@ class Card {
     this.image = image;
   }
 
-  static async getAll() {
-    const response = await db.query("SELECT * FROM cards;");
+  static async getAll(deckId) {
+    const response = await db.query("SELECT * FROM cards WHERE deck_id = $1;", [
+      deckId,
+    ]);
     return response.rows.map((c) => new Card(c));
   }
 
@@ -18,7 +20,7 @@ class Card {
     const response = await db.query("SELECT * FROM cards WHERE card_id = $1;", [
       id,
     ]);
-    if (response.rows.length != 1) {
+    if (response.rows.length !== 1) {
       throw new Error("Unable to locate card.");
     }
     return new Card(response.rows[0]);
@@ -30,18 +32,13 @@ class Card {
       "INSERT INTO cards (deck_id, question, answer, image) VALUES ($1, $2, $3, $4) RETURNING *;",
       [deck_id, question, answer, image]
     );
-
-    return response.rows.map((c) => new Card(c));
+    return new Card(response.rows[0]);
   }
 
   async destroy() {
     const response = await db.query("DELETE FROM cards WHERE card_id = $1;", [
       this.id,
     ]);
-    if (response.rowCount !== 1) {
-      throw new Error("Unable to locate card.");
-    }
-    return "Card deleted successfully.";
   }
 
   async update(data) {
@@ -50,7 +47,7 @@ class Card {
       "UPDATE cards SET question = $1, answer = $2, image = $3 WHERE card_id = $4 RETURNING *;",
       [question, answer, image, this.id]
     );
-    if (response.rows.length != 1) {
+    if (response.rows.length !== 1) {
       throw new Error("Card not found.");
     }
     return new Card(response.rows[0]);
