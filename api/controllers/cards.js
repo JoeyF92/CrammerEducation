@@ -2,7 +2,12 @@ const Card = require("../models/Card");
 
 async function index(req, res) {
   try {
-    const cards = await Card.getAll();
+    const deckId = parseInt(req.params.id);
+    if (isNaN(deckId)) {
+      return res.status(400).json({ error: "Invalid deck ID." });
+    }
+
+    const cards = await Card.getAll(deckId);
     res.status(200).json(cards);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -32,7 +37,7 @@ async function destroy(req, res) {
   try {
     const id = parseInt(req.params.id);
     const card = await Card.getOneById(id);
-    const result = await card.destroy();
+    await card.destroy();
     res.sendStatus(204);
   } catch (err) {
     res.status(404).json({ error: err.message });

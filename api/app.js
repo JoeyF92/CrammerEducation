@@ -21,6 +21,6 @@ app.get("/", (req, res) => {
 
 app.use("/users", userRouter);
 app.use("/decks", deckRouter);
-app.use("/cards", cardsRouter);
+app.use("/decks/:id/cards", cardsRouter);
 
 module.exports = app;
