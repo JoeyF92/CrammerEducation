@@ -26,7 +26,8 @@ const DecksPage = () => {
                         name={d.name}
                         subject={d.subject}
                         tags={d.tags}
-                        likes={d.likes} 
+                        likes={d.likes}
+                        image={d.image} 
                     />
                 )
     }
