@@ -1,5 +1,5 @@
 const db = require("../database/connect");
-const Deck = require("./Decks")
+const Deck = require("./Decks");
 
 class User {
   constructor({ user_id, first_name, last_name, email, password, liked }) {
@@ -21,8 +21,11 @@ class User {
     return new User(response.rows[0]);
   }
 
-  static async getLiked (id) {
-    const response = await db.query("SELECT decks.* FROM decks JOIN users ON decks.deck_id = ANY(users.liked) WHERE users.user_id = $1;", [id])
+  static async getLiked(id) {
+    const response = await db.query(
+      "SELECT decks.* FROM decks JOIN users ON decks.deck_id = ANY(users.liked) WHERE users.user_id = $1;",
+      [id]
+    );
     return response.rows.map((deckData) => new Deck(deckData));
   }
 
@@ -38,11 +41,12 @@ class User {
 
   static async create(data) {
     const { first_name, last_name, email, password } = data;
-
+    console.log(data);
     let response = await db.query(
       "INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING user_id;",
       [first_name, last_name, email, password]
     );
+
     const newId = response.rows[0].user_id;
     const newUser = await User.getOneById(newId);
     return newUser;
