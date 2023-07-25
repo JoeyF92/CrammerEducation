@@ -69,13 +69,13 @@ async function show(req, res) {
   }
 }
 
-async function getLiked(req, res){
-  const id = req.params.id
+async function getLiked(req, res) {
+  const id = req.params.id;
   try {
     const likedDecks = await User.getLiked(id);
-    res.status(200).json(likedDecks)
+    res.status(200).json(likedDecks);
   } catch (err) {
-    res.status(500).json({error: err.message})
+    res.status(500).json({ error: err.message });
   }
 }
 
