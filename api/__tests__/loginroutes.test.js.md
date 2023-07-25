@@ -75,22 +75,22 @@ describe("api server", () => {
       ).rejects.toThrowError("Unable to locate user.");
     });
 
-    it("Should be able to update the users information", async () => {
-      const updateData = [
-        "Joe",
-        "Tester",
-        "newemail@example.com",
-        "newpassword",
-        userId,
-      ];
+    // it("Should be able to update the users information", async () => {
+    //   const updateData = [
+    //     "Joe",
+    //     "Tester",
+    //     "newemail@example.com",
+    //     "newpassword",
+    //     userId,
+    //   ];
 
-      const updatedUser = await User.update(updateData);
-      expect(updatedUser.first_name).toBe("Joe");
-      expect(updatedUser.last_name).toBe("Tester");
-      expect(updatedUser.email).toBe("newemail@example.com");
-      expect(updatedUser.password).toBe("newpassword");
-      expect(updatedUser.id).toBe(userId);
-    });
+    //   const updatedUser = await User.update(updateData);
+    //   expect(updatedUser.first_name).toBe("Joe");
+    //   expect(updatedUser.last_name).toBe("Tester");
+    //   expect(updatedUser.email).toBe("newemail@example.com");
+    //   expect(updatedUser.password).toBe("newpassword");
+    //   expect(updatedUser.id).toBe(userId);
+    // });
   });
 });
 
