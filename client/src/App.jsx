@@ -28,7 +28,7 @@ const App = () => {
         <Route path="cards/:id" element={<FlashcardPage />} />
         <Route path="myflashcards" element={<MyFlashcardsPage />} />
         <Route path="createdeck" element={<AddDeckPage />} />
-        <Route path="createcard" element={<AddFlashcardPage />} />
+        <Route path="createcard/:deckId" element={<AddFlashcardPage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="logout" element={<LogoutPage />} />
         <Route path="register" element={<RegisterPage />} />

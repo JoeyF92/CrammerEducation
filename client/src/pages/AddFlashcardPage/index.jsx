@@ -1,11 +1,17 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import { CreateFlashcardForm } from "../../components";
 
-export default function AddFlashcardPage() {
+const AddFlashcardPage = () => {
+  const { deckId } = useParams();
+
   return (
     <div>
-      <h1>Add the card</h1>
-      <CreateFlashcardForm />
+      <h1>Add Flashcard Page</h1>
+      <p>Deck ID: {deckId}</p>
+      <CreateFlashcardForm deckId={deckId} />
     </div>
   );
-}
+};
+
+export default AddFlashcardPage;

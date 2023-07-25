@@ -1,217 +1,102 @@
-// import React, { useState } from "react";
-
-// const CreateDeckForm = () => {
-//   const [formData, setFormData] = useState({
-//     deck_name: "",
-//     subject: "",
-//     tags: "",
-//     image: "",
-//   });
-
-//   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     // Convert the tags string to an array
-//     const tagsArray = formData.tags.split(",").map((tag) => tag.trim());
-
-//     // Update the formData to include the tags array
-//     const updatedFormData = { ...formData, tags: tagsArray };
-
-//     try {
-//       const response = await fetch("http://localhost:3000/decks", {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(updatedFormData),
-//       });
-
-//       if (!response.ok) {
-//         const errorMessage = await response.json();
-//         throw new Error(errorMessage.error);
-//       }
-
-//       const deck = await response.json();
-//       console.log("Deck created:", deck);
-
-//       // Show the success message for 3 seconds
-//       setShowSuccessMessage(true);
-//       setTimeout(() => {
-//         setShowSuccessMessage(false);
-//       }, 3000);
-
-//       // Clear the form inputs
-//       setFormData({
-//         deck_name: "",
-//         subject: "",
-//         tags: "",
-//         image: "",
-//       });
-
-//       // You can handle the response data here as needed.
-//     } catch (error) {
-//       console.error("Error creating deck:", error.message);
-//       // Handle the error (e.g., show an error message to the user).
-//     }
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <input
-//         type="text"
-//         name="deck_name"
-//         value={formData.deck_name}
-//         onChange={handleChange}
-//         placeholder="Deck Name"
-//       />
-//       <input
-//         type="text"
-//         name="subject"
-//         value={formData.subject}
-//         onChange={handleChange}
-//         placeholder="Subject"
-//       />
-//       <input
-//         type="text"
-//         name="tags"
-//         value={formData.tags}
-//         onChange={handleChange}
-//         placeholder="Tags"
-//       />
-//       <input
-//         type="text"
-//         name="image"
-//         value={formData.image}
-//         onChange={handleChange}
-//         placeholder="Image URL"
-//       />
-//       <button type="submit">Create Deck</button>
-
-//       {showSuccessMessage && <p>New deck was successfully created!</p>}
-//     </form>
-//   );
-// };
-
-// export default CreateDeckForm;
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import CreateFlashcardForm from "../CreateFlashcardForm";
 
 const CreateDeckForm = () => {
-  const [formData, setFormData] = useState({
-    deck_name: "",
-    subject: "",
-    tags: "",
-    image: "",
-  });
+  const [deckName, setDeckName] = useState("");
+  const [subject, setSubject] = useState("");
+  const [tags, setTags] = useState("");
+  const [image, setImage] = useState("");
+  const [message, setMessage] = useState("");
+  const [newDeckId, setNewDeckId] = useState(null);
+  const [deckCreated, setDeckCreated] = useState(false);
 
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const [createdDeck, setCreatedDeck] = useState(null);
+  const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  useEffect(() => {
+    if (deckCreated && newDeckId !== null) {
+      navigate(`/createcard/${newDeckId}`);
+    }
+  }, [deckCreated, newDeckId, navigate]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Convert the tags string to an array
-    const tagsArray = formData.tags.split(",").map((tag) => tag.trim());
+    const token = JSON.parse(localStorage.getItem("token"));
+    const user_id = token.user_id;
 
-    // Update the formData to include the tags array
-    const updatedFormData = { ...formData, tags: tagsArray };
+    const tagsArray = tags.split(",").map((tag) => tag.trim());
 
-    try {
-      const response = await fetch("http://localhost:3000/decks", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedFormData),
+    const deckData = {
+      deck_name: deckName,
+      subject,
+      tags: tagsArray,
+      image,
+      user_id,
+    };
+
+    console.log("Deck Data:", deckData);
+
+    fetch("http://localhost:3000/decks", {
+      method: "POST",
+      body: JSON.stringify(deckData),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ${user_id}`,
+      },
+    })
+      .then((res) => {
+        console.log("Response Status:", res.status);
+        return res.json();
+      })
+      .then((data) => {
+        console.log("Data:", data);
+        setMessage("Deck created successfully.");
+        setNewDeckId(data.id);
+        console.log("New Deck ID:", data.id);
+        setTimeout(() => {
+          setMessage("");
+          setDeckCreated(true);
+        }, 500);
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+        setMessage("Error creating the deck.");
+        setTimeout(() => {
+          setMessage("");
+        }, 5000);
       });
 
-      if (!response.ok) {
-        const errorMessage = await response.json();
-        throw new Error(errorMessage.error);
-      }
-
-      const deck = await response.json();
-      console.log("Deck created:", deck);
-
-      // Update the state with the created deck data
-      setCreatedDeck(deck);
-
-      // Show the success message for 3 seconds
-      setShowSuccessMessage(true);
-      setTimeout(() => {
-        setShowSuccessMessage(false);
-      }, 3000);
-
-      // Clear the form inputs
-      setFormData({
-        deck_name: "",
-        subject: "",
-        tags: "",
-        image: "",
-      });
-    } catch (error) {
-      console.error("Error creating deck:", error.message);
-      // Handle the error (e.g., show an error message to the user).
-    }
+    setDeckName("");
+    setSubject("");
+    setTags("");
+    setImage("");
   };
 
+  if (deckCreated) {
+    return <CreateFlashcardForm deckId={newDeckId} />;
+  }
+
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="deck_name"
-          value={formData.deck_name}
-          onChange={handleChange}
-          placeholder="Deck Name"
-        />
-        <input
-          type="text"
-          name="subject"
-          value={formData.subject}
-          onChange={handleChange}
-          placeholder="Subject"
-        />
-        <input
-          type="text"
-          name="tags"
-          value={formData.tags}
-          onChange={handleChange}
-          placeholder="Tags"
-        />
-        <input
-          type="text"
-          name="image"
-          value={formData.image}
-          onChange={handleChange}
-          placeholder="Image URL"
-        />
-        <button type="submit">Create Deck</button>
-      </form>
-
-      {showSuccessMessage && <p>New deck was successfully created!</p>}
-
-      {/* Render the created deck */}
-      {createdDeck && (
-        <div>
-          <h2>Created Deck:</h2>
-          <p>Deck Name: {createdDeck.deck_name}</p>
-          <p>Subject: {createdDeck.subject}</p>
-          <p>Tags: {createdDeck.tags.join(", ")}</p>
-          <p>Image URL: {createdDeck.image}</p>
-        </div>
-      )}
-    </>
+    <form onSubmit={handleSubmit}>
+      <div>
+        Deck Name:{" "}
+        <input value={deckName} onChange={(e) => setDeckName(e.target.value)} />
+      </div>
+      <div>
+        Subject:{" "}
+        <input value={subject} onChange={(e) => setSubject(e.target.value)} />
+      </div>
+      <div>
+        Tags: <input value={tags} onChange={(e) => setTags(e.target.value)} />
+      </div>
+      <div>
+        Image URL:{" "}
+        <input value={image} onChange={(e) => setImage(e.target.value)} />
+      </div>
+      <button type="submit">Create Deck</button>
+      <p className="message">{message}</p>
+    </form>
   );
 };
 
