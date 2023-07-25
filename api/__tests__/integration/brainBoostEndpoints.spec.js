@@ -30,6 +30,7 @@ describe("BrainBoost endpoints", () => {
   it("should retrieve all decks", async () => {
     const res = await request(api).get("/decks/");
     expect(res.statusCode).toEqual(200);
+    console.log(res);
     // expect(res.body.name).toEqual("Peanuts");
   });
 });
