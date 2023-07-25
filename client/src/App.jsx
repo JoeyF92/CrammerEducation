@@ -12,6 +12,7 @@ import LogoutPage from "./pages/LogoutPage";
 import MyFlashcardsPage from "./pages/MyFlashcardsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import RegisterPage from "./pages/RegisterPage";
+import AddFlashcardPage from "./pages/AddFlashcardPage";
 import { Header } from "./components";
 
 import "./App.css";
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="cards/:id" element={<FlashcardPage />} />
         <Route path="myflashcards" element={<MyFlashcardsPage />} />
         <Route path="createdeck" element={<AddDeckPage />} />
+        <Route path="createcard" element={<AddFlashcardPage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="logout" element={<LogoutPage />} />
         <Route path="register" element={<RegisterPage />} />
