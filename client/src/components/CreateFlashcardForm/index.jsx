@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const CreateFlashcardForm = ({ deckId }) => {
+const CreateFlashcardForm = ({ deckId, cards }) => {
   const [formData, setFormData] = useState({
     question: "",
     answer: "",
-    image: "",
   });
-
-  console.log("Received Deck ID:", deckId);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,7 +17,6 @@ const CreateFlashcardForm = ({ deckId }) => {
       const flashcardData = {
         question: formData.question,
         answer: formData.answer,
-        image: formData.image,
         deck_id: deckId,
       };
 
@@ -32,6 +28,11 @@ const CreateFlashcardForm = ({ deckId }) => {
       );
 
       console.log("Flashcard created:", response.data);
+
+      setFormData({
+        question: "",
+        answer: "",
+      });
     } catch (error) {
       console.error("Error creating flashcard:", error.message);
     }
@@ -54,13 +55,6 @@ const CreateFlashcardForm = ({ deckId }) => {
         value={formData.answer}
         onChange={handleChange}
         placeholder="Answer"
-      />
-      <input
-        type="text"
-        name="image"
-        value={formData.image}
-        onChange={handleChange}
-        placeholder="Image URL"
       />
       <button type="submit">Create Flashcard</button>
     </form>
