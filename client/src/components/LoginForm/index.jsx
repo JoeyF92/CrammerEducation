@@ -20,6 +20,7 @@ export default function LoginForm({email, setEmail, password, setPassword, messa
         return res.json();
       })
       .then((data) => {
+        localStorage.setItem("token", JSON.stringify(data.token)); //
         setMessage('User logged in successfully.');
         setTimeout(() => {
           setMessage('')
