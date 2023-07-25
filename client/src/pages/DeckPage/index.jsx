@@ -5,7 +5,6 @@ const DeckPage = () => {
   const { id } = useParams();
   const [deck, setDeck] = useState(null);
   const [cards, setCards] = useState([]);
-
   useEffect(() => {
     fetchDeck();
     fetchCards();
@@ -50,7 +49,6 @@ const DeckPage = () => {
       ) : (
         <p>Loading deck...</p>
       )}
-
       <h2>Cards:</h2>
       {cards.length === 0 ? (
         <p>No cards available.</p>

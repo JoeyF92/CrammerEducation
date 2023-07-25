@@ -1,47 +1,47 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+
+import { DeckFilter, DeckCard } from "../../components";
 
 const DecksPage = () => {
   const [decks, setDecks] = useState([]);
+  const [textFilter, setTextFilter] = useState("");
 
   useEffect(() => {
-    fetchDecks();
+    async function loadDecks() {
+      const response = await fetch("http://localhost:3000/decks");
+      const data = await response.json();
+      setDecks(data);
+    }
+
+    loadDecks();
   }, []);
 
-  const fetchDecks = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/decks");
-      if (!response.ok) {
-        throw new Error("Failed to fetch decks");
-      }
-      const decksData = await response.json();
-      setDecks(decksData);
-    } catch (error) {
-      console.error("Error fetching decks:", error.message);
-    }
-  };
+  function displayDecks() {
+    return decks
+      .filter(
+        (d) =>
+          textFilter.length == 0 ||
+          d.name.toLowerCase().includes(textFilter.toLowerCase())
+      )
+      .map((d) => (
+        <DeckCard
+          key={d.id}
+          id={d.id}
+          name={d.name}
+          subject={d.subject}
+          tags={d.tags}
+          likes={d.likes}
+          image={d.image}
+        />
+      ));
+  }
 
   return (
-    <div>
-      <h1>All Decks</h1>
-      {decks.length === 0 ? (
-        <p>No decks available.</p>
-      ) : (
-        <ul>
-          {decks.map((deck) => (
-            <li key={deck.id}>
-              <Link to={`/decks/${deck.id}`}>
-                <h2>{deck.name}</h2>
-              </Link>
-              <p>Subject: {deck.subject}</p>
-              <p>Tags: {deck.tags.join(", ")}</p>
-              <p>Likes: {deck.likes}</p>
-              {deck.image && <img src={deck.image} alt="Deck Thumbnail" />}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <main className="deck-main">
+      <h1>Decks</h1>
+      <DeckFilter textFilter={textFilter} setTextFilter={setTextFilter} />
+      <div className="deck-holder">{displayDecks()}</div>
+    </main>
   );
 };
 
