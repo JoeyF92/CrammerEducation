@@ -24,7 +24,8 @@ body {
 .navigation-card {
   display:flex;
   gap: 20px;
-  
+  align-content: center;
+  justify-content: center;
 }
 
 .card {
@@ -44,4 +45,9 @@ body {
 
 .card:hover {
   transform: translateY(-5px);
+}
+
+
+.container {
+  margin: auto;
 }
