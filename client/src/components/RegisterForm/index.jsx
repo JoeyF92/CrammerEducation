@@ -1,6 +1,4 @@
-/* eslint-disable-next-line no-unused-vars */
-import React, { useState } from "react";
-
+import React from "react";
 
 export default function RegisterForm({ firstName, setFirstName, lastName, setLastName, email, setEmail, password, setPassword, message, setMessage }) {
 
@@ -32,29 +30,40 @@ export default function RegisterForm({ firstName, setFirstName, lastName, setLas
           'Content-type': 'application/json; charset=UTF-8',
         },
       })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then((err) => {
+            throw new Error(err.detail);
+          })
+        }
+        return res.json();
+      })
       .then((data) => {
         setMessage('User registered successfully.');
+        setTimeout(() => {
+          setMessage('')
+        }, 5000)
+      })
+      .catch((err) => {
+        console.log(err.message);
+        if (err.message === '400') {
+          setMessage('Email is already in use. Please use a different email.');
+        } else {
+          setMessage('There was a problem with your registration.');
+        }
         setTimeout(() => {
           setMessage('');
         }, 5000);
       })
-      .catch((err) => {
-        console.log(err.message);
-        setMessage('There was a problem with your registration.');
-        setTimeout(() => {
-          setMessage('');
-        }, 5000);
-      });
-      setFirstName('');
-      setLastName('');
-      setUsername('');
-      setPassword('');
+      setFirstName('')
+      setLastName('')
+      setEmail('')
+      setPassword('')
     } else {
-      setMessage('Please fill in all fields.');
+      setMessage('Please fill in all fields.')
       setTimeout(() => {
-        setMessage('');
-      }, 5000);
+        setMessage('')
+      }, 5000)
     }
   }
 
