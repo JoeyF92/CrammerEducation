@@ -4,6 +4,7 @@ export default function LoginForm({email, setEmail, password, setPassword, messa
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    localStorage.clear()
 
     if (email.length > 0 && password.length > 0) {
       fetch('http://localhost:3000/users/login', {
