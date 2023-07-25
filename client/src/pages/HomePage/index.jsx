@@ -13,7 +13,7 @@ export default function HomePage() {
           </div>
         </Link>
 
-        <Link to="/users/:id/liked">
+        <Link to="/myflashcards">
           <div className="card">
             <h2>My Flashcards</h2>
             <FontAwesomeIcon icon="fa-solid fa-layer-group" size="lg"/>
