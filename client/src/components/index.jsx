@@ -3,5 +3,7 @@ export { default as LoginForm } from "./LoginForm";
 export { default as RegisterForm } from "./RegisterForm";
 export { default as ShowFlashcard } from "./ShowFlashcard";
 export { default as ShowFlashcardsList } from "./ShowFlashcardsList";
-export { default as DeckCard } from './DeckCard'
-export { default as DeckFilter } from './DeckFilter'
+export { default as CreateDeckForm } from "./CreateDeckForm";
+export { default as CreateFlashcardForm } from "./CreateFlashcardForm";
+export { default as DeckCard } from "./DeckCard";
+export { default as DeckFilter } from "./DeckFilter";
