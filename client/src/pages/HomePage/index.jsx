@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { DeckCard } from "../../components";
 
 export default function HomePage() {
+  const [trending, setTrending] = useState([]);
+
+  useEffect(() => {
+    async function loadTrending() {
+      //this route already orders the decks by number of likes
+      const response = await fetch(`http://localhost:3000/decks`)
+      const data = await response.json()
+      const trendingDecks = data.slice(0,3);
+      setTrending(trendingDecks)
+    }
+    loadTrending()
+  }, [])
+
+  function displayTrending() {
+    return trending
+    .map(d => 
+      <DeckCard
+      key={d.id} 
+          id={d.id} 
+          name={d.name}
+          subject={d.subject}
+          tags={d.tags}
+          likes={d.likes}
+          image={d.image} 
+      />
+    )
+  }
+
   return (
     <div>
       <div className="navigation-card">
@@ -29,26 +58,10 @@ export default function HomePage() {
       </div>
 
       <h2 className="trending">Trending</h2>
-
-      <div className="navigation-card">
-      <Link to="/">
-          <div className="card">
-            <h2>Trending Deck</h2>
-          </div>
-        </Link>
-
-        <Link to="/">
-          <div className="card">
-            <h2>Trending Deck</h2>
-          </div>
-        </Link>
-
-        <Link to="/">
-          <div className="card">
-            <h2>Trending Deck</h2>
-          </div>
-        </Link>
+        <div className="navigation-card">
+          {displayTrending()}
+        </div>
       </div>
-    </div>
+    
   );
 }
