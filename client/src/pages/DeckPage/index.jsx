@@ -52,7 +52,7 @@ const DeckPage = () => {
   return (
     <div>
       {deck ? (
-        <div>
+        <div className="guess">
           Try to guess the correct answer first, and then click on the card to
           reveal the correct solution.
         </div>
@@ -65,18 +65,25 @@ const DeckPage = () => {
           <h2>{currentCardIndex + 1}</h2>
           {!showAnswer ? (
             <div className="question-box" onClick={handleRevealAnswer}>
-              <p>Question: {cards[currentCardIndex].question}</p>
+              <p>
+                Question:
+                <br />
+                <br /> {cards[currentCardIndex].question}
+              </p>
             </div>
           ) : (
             <div className="answer-box">
-              <p>Answer: {cards[currentCardIndex].answer}</p>
+              <p>Answer:</p>
+              <p className="answer-text">{cards[currentCardIndex].answer}</p>
             </div>
           )}
         </div>
       )}
 
       {cards.length > 0 && currentCardIndex < cards.length && (
-        <button onClick={handleNextCard}>Next Card</button>
+        <button className="btn" onClick={handleNextCard}>
+          Next Card
+        </button>
       )}
 
       {cards.length === 0 && <p>No cards available.</p>}
