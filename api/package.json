@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "nodemon -L ./index.js",
     "setup-db": "node ./database/setup.js",
-    "test": "jest --setupFiles ./__tests__/integration/config.js --watchAll --verbose --detectOpenHandles",
-    "unitTests": "jest --testPathPattern=/unit/ --watchAll --verbose",
-    "coverage": "jest --testPathPattern=/unit/ --coverage"
+    "test": "jest --watchAll",
+    "coverage": "jest --coverage",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -18,22 +18,12 @@
     "live-server": "^1.1.0",
     "nodemon": "^3.0.1"
   },
-  "jest": {
-    "testEnvironment": "node",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "testPathIgnorePatterns": [
-      "/__tests__/integration/config.js"
-    ]
-  },
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "pg": "^8.11.1",
-    "supertest": "^6.3.3",
     "uuid": "^9.0.0"
   }
 }

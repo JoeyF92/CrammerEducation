@@ -1,15 +1,76 @@
 .card-box {
   border: 2px solid #333;
+  background-color: #6decaf;
   padding: 20px;
   margin-bottom: 20px;
+  height: 350px;
+  width: 450px;
+  color: #5e239d;
+
+  border-radius: 10px;
+  box-shadow: 0 4px 8px #5e239d;
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  flex-direction: column;
+  font-family: "Verdana", sans-serif;
 }
+
 .question-box {
-  background-color: #f1f1f1;
+  background-color: #6decaf;
   cursor: pointer;
-  padding: 10px;
+  text-align: center;
+  font-weight: bold;
 }
 
 .answer-box {
-  background-color: #e1f1e1;
-  padding: 10px;
+  font-weight: bold;
+  text-align: center;
 }
+
+/* .card-box {
+  width: 300px;
+  height: 200px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.question-box {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.answer-box {
+  font-size: 16px;
+  font-style: italic;
+  display: none;
+}
+
+.reveal-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reveal-btn:hover {
+  background-color: #0056b3;
+} */
