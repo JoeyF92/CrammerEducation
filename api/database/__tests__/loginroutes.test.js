@@ -83,6 +83,7 @@ describe("api server", () => {
         "newpassword",
         userId,
       ];
+
       const updatedUser = await User.update(updateData);
       expect(updatedUser.first_name).toBe("Joe");
       expect(updatedUser.last_name).toBe("Tester");
@@ -92,3 +93,7 @@ describe("api server", () => {
     });
   });
 });
+
+// To work on:
+//update
+//get liked
