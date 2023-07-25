@@ -62,7 +62,7 @@ const DeckPage = () => {
 
       {cards.length > 0 && currentCardIndex < cards.length && (
         <div className="card-box">
-          <h2>Card {currentCardIndex + 1}</h2>
+          <h2>{currentCardIndex + 1}</h2>
           {!showAnswer ? (
             <div className="question-box" onClick={handleRevealAnswer}>
               <p>Question: {cards[currentCardIndex].question}</p>
