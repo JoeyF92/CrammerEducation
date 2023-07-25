@@ -1,4 +1,6 @@
+/* eslint-disable-next-line no-unused-vars */
 import React, { useState } from "react";
+
 
 export default function RegisterForm({ firstName, setFirstName, lastName, setLastName, email, setEmail, password, setPassword, message, setMessage }) {
 
