@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for controllers/decks.js</title>
+    <title>Code coverage report for controllers/cards.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">controllers</a> decks.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">controllers</a> cards.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.12% </span>
+                <span class="strong">76.47% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>25/32</span>
+                <span class='fraction'>26/34</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.12% </span>
+                <span class="strong">76.47% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>25/32</span>
+                <span class='fraction'>26/34</span>
             </div>
         
             
@@ -127,12 +127,15 @@
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,9 +173,12 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -183,24 +189,19 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const Deck = require("../models/Decks.js");
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const Card = require("../models/Card");
 &nbsp;
 async function index(req, res) {
   try {
-    const decks = await Deck.getAll();
-    res.status(200).json(decks);
+    const deckId = parseInt(req.params.id);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (isNaN(deckId)) {
+<span class="cstat-no" title="statement not covered" >      return res.status(400).json({ error: "Invalid deck ID." });</span>
+    }
+&nbsp;
+    const cards = await Card.getAll(deckId);
+    res.status(200).json(cards);
   } catch (err) {
 <span class="cstat-no" title="statement not covered" >    res.status(500).json({ error: err.message });</span>
   }
@@ -209,8 +210,8 @@ async function index(req, res) {
 async function show(req, res) {
   try {
     const id = parseInt(req.params.id);
-    const deck = await Deck.getOneById(id);
-    res.status(200).json(deck);
+    const card = await Card.getOneById(id);
+    res.status(200).json(card);
   } catch (err) {
 <span class="cstat-no" title="statement not covered" >    res.status(404).json({ error: err.message });</span>
   }
@@ -218,20 +219,8 @@ async function show(req, res) {
 &nbsp;
 async function create(req, res) {
   try {
-    const deck = await Deck.create(req.body);
-    res.status(201).json(deck);
-  } catch (err) {
-<span class="cstat-no" title="statement not covered" >    res.status(404).json({ error: err.message });</span>
-  }
-}
-&nbsp;
-async function update(req, res) {
-  try {
-    const id = parseInt(req.params.id);
-    const data = req.body;
-    const deck = await Deck.getOneById(id);
-    const result = await deck.update(data);
-    res.status(200).json(result);
+    const card = await Card.create(req.body);
+    res.status(201).json(card);
   } catch (err) {
 <span class="cstat-no" title="statement not covered" >    res.status(404).json({ error: err.message });</span>
   }
@@ -240,13 +229,12 @@ async function update(req, res) {
 async function destroy(req, res) {
   try {
     const id = parseInt(req.params.id);
-    const deck = await Deck.getOneById(id);
-    const deletionResult = await deck.destroy();
-    console.log(deletionResult);
+    const card = await Card.getOneById(id);
+    const deletionResult = await card.destroy();
     if (deletionResult.deleted) {
       res.status(204);
     } else <span class="missing-if-branch" title="else path not taken" >E</span>{
-<span class="cstat-no" title="statement not covered" >      res.status(404).json({ error: "Deck not found." });</span>
+<span class="cstat-no" title="statement not covered" >      res.status(404).json({ error: "Card not found." });</span>
     }
   } catch (err) {
 <span class="cstat-no" title="statement not covered" >    console.error("Error during deletion:", err);</span>
@@ -254,13 +242,19 @@ async function destroy(req, res) {
   }
 }
 &nbsp;
-module.exports = {
-  index,
-  show,
-  update,
-  create,
-  destroy,
-};
+async function update(req, res) {
+  try {
+    const id = parseInt(req.params.id);
+    const data = req.body;
+    const card = await Card.getOneById(id);
+    const result = await card.update(data);
+    res.status(200).json(result);
+  } catch (err) {
+<span class="cstat-no" title="statement not covered" >    res.status(404).json({ error: err.message });</span>
+  }
+}
+&nbsp;
+module.exports = { index, show, create, destroy, update };
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

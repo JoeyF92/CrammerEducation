@@ -83,16 +83,60 @@ describe("Decks controller", () => {
     });
   });
 
-  // describe("destroy", () => {
-  //   test("it returns a 204 status code on successful deletion", async () => {
-  //     const mockDeck = new Deck({
-  //       /* Provide necessary properties */
-  //     });
-  //     jest.spyOn(Decks.prototype, "destroy").mockResolvedValue(mockDeck);
+  describe("update", () => {
+    test("it returns a 200 status on successful update", async () => {
+      const deck = {
+        id: 1,
+        name: "Biology Flashcards",
+        subject: "Biology",
+        tags: ["biology", "science"],
+        likes: 0,
+        image: "deck1 image",
+        user_id: 1,
+      };
+      const deckUpdate = {
+        id: 1,
+        name: "Biology Flashcards",
+        subject: "Biology",
+        tags: ["biology", "science"],
+        likes: 1,
+        image: "deck1 image",
+        user_id: 1,
+      };
 
-  //     const mockReq = { params: { id: 1 } };
-  //     await decksController.destroy(mockReq, mockRes);
-  //     expect(mockStatus).toHaveBeenCalledWith(204);
-  //   });
-  // });
+      jest.spyOn(Decks, "getOneById").mockResolvedValue(new Decks(deck));
+
+      jest
+        .spyOn(Decks.prototype, "update")
+        .mockResolvedValue(new Decks(deckUpdate));
+
+      const mockReq = { params: deckUpdate };
+
+      await decksController.update(mockReq, mockRes);
+
+      expect(mockStatus).toHaveBeenCalledWith(200);
+      expect(mockJson).toHaveBeenCalledWith(new Decks(deckUpdate));
+    });
+  });
+
+  describe("destroy", () => {
+    test("it returns a 204 status code on successful deletion", async () => {
+      const deck = {
+        id: 1,
+        name: "Biology Flashcards",
+        subject: "Biology",
+        tags: ["biology", "science"],
+        likes: 0,
+        image: "deck1 image",
+        user_id: 1,
+      };
+      jest.spyOn(Decks, "getOneById").mockResolvedValue(new Decks(deck));
+      jest
+        .spyOn(Decks.prototype, "destroy")
+        .mockResolvedValue({ deleted: true });
+      const mockReq = { params: { id: 1 } };
+      await decksController.destroy(mockReq, mockRes);
+      expect(mockStatus).toHaveBeenCalledWith(204);
+    });
+  });
 });

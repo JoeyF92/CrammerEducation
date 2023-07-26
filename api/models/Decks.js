@@ -38,29 +38,30 @@ class Deck {
 
   async update(data) {
     const isLiked = data.isLiked;
-    const increment = isLiked ? 1 : -1; 
-  
+    const increment = isLiked ? 1 : -1;
+
     const response = await db.query(
       "UPDATE decks SET likes = likes + $1 WHERE deck_id = $2 RETURNING deck_id, likes;",
       [increment, this.id]
     );
-  
+
     if (response.rows.length !== 1) {
       throw new Error("Unable to update likes.");
     }
-  
+
     return new Deck(response.rows[0]);
   }
-  
 
   async destroy() {
-    const response = await db.query(
-      "DELETE FROM decks WHERE deck_id = $1 RETURNING *;",
-      [this.id]
-    );
-
-    return new Deck(response.rows[0]);
+    try {
+      const response = await db.query("DELETE FROM decks WHERE deck_id = $1;", [
+        this.id,
+      ]);
+      return { deleted: response.rows.length > 0 };
+    } catch (err) {
+      console.error("Error during database query:", err);
+      throw new Error("Failed to delete the deck.");
+    }
   }
 }
-
 module.exports = Deck;
