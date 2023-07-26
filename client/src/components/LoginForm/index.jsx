@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 export default function LoginForm({
   email,
@@ -8,6 +9,7 @@ export default function LoginForm({
   message,
   setMessage,
 }) {
+
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.clear(); //?
@@ -20,29 +22,29 @@ export default function LoginForm({
           "Content-type": "application/json; charset=UTF-8",
         },
       })
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error(res.status);
-          }
-          return res.json();
-        })
-        .then((data) => {
-          localStorage.setItem("token", JSON.stringify(data.token)); //
-          setMessage("User logged in successfully.");
-          setTimeout(() => {
-            setMessage("");
-            window.location = "/";
-          }, 500);
-        })
-        .catch((err) => {
-          console.log(err);
-          setMessage("Invalid email or password.");
-          setTimeout(() => {
-            setMessage("");
-          }, 5000);
-        });
-      setEmail("");
-      setPassword("");
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        localStorage.setItem("token", JSON.stringify(data.token))
+        setMessage('User logged in successfully.');
+        setTimeout(() => {
+          setMessage('')
+          window.location = "/"
+        }, 300);
+      })
+      .catch((err) => {
+        console.log(err)
+        setMessage('Invalid email or password.');
+        setTimeout(() => {
+          setMessage('')
+        }, 5000)
+      });
+      setEmail('')
+      setPassword('')
     } else {
       setMessage("Please fill in all fields.");
       setTimeout(() => {
@@ -66,6 +68,7 @@ export default function LoginForm({
         />
       </div>
       <button type="submit">Login</button>
+      <p>New User? <Link to="/register">Register</Link></p>
       <p className="message">{message}</p>
     </form>
   );
