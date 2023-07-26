@@ -14,7 +14,7 @@ export default function MyFlashcardsPage() {
       setLikedDecks(data)
     }
     loadLiked()
-  }, [])
+  }, [likedDecks])
 
   useEffect(() => {
     async function loadMadeByYou() {
