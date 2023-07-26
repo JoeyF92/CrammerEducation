@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { DeckFilter, DeckCard } from "../../components";
+import "./styles.css";
 
 const DecksPage = () => {
   const [decks, setDecks] = useState([]);

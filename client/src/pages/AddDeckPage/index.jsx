@@ -1,5 +1,6 @@
 import React from "react";
 import { CreateDeckForm } from "../../components";
+import "./styles.css";
 
 const AddDeckPage = () => {
   return (

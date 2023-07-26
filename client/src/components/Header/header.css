@@ -1,22 +1,27 @@
-main {
-  margin-top: 0;
-  background-color: white;
-  padding: 10px;
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #fff;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 nav {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 nav a {
-  color: rgb(224, 15, 15);
+  margin-right: 20px;
   text-decoration: none;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 10px;
+  color: #333;
 }
-nav a.active {
-  text-decoration: underline;
+
+nav a:last-child {
+  margin-right: 0;
 }
