@@ -41,7 +41,7 @@ class User {
 
   static async create(data) {
     const { first_name, last_name, email, password } = data;
-    console.log(data);
+
     let response = await db.query(
       "INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING user_id;",
       [first_name, last_name, email, password]
