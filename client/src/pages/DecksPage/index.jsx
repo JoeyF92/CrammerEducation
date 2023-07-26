@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { DeckFilter, DeckCard } from "../../components";
 import "./styles.css";
 
@@ -21,7 +20,7 @@ const DecksPage = () => {
     return decks
       .filter(
         (d) =>
-          textFilter.length == 0 ||
+          textFilter.length === 0 ||
           d.name.toLowerCase().includes(textFilter.toLowerCase())
       )
       .map((d) => (
