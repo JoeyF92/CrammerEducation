@@ -36,9 +36,16 @@ class Card {
   }
 
   async destroy() {
-    const response = await db.query("DELETE FROM cards WHERE card_id = $1;", [
-      this.id,
-    ]);
+    try {
+      const response = await db.query("DELETE FROM cards WHERE card_id = $1;", [
+        this.id,
+      ]);
+
+      return { deleted: response.rowCount > 0 };
+    } catch (err) {
+      console.error("Error during database query:", err);
+      throw new Error("Failed to delete the card.");
+    }
   }
 
   async update(data) {
