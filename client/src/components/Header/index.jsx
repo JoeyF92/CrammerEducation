@@ -13,12 +13,12 @@ const Header = () => {
   };
 
   return (
-    <header>
+    <main>
+      <nav>
       <NavLink to="/" className="logo">
         BrainBoost
         <img src={brainLogo} alt="Brain Logo" className="brain-logo" />
       </NavLink>
-      <nav>
         <NavLink to="/" activeclassnamee="activeLink">
           Home
         </NavLink>
@@ -40,7 +40,7 @@ const Header = () => {
         </NavLink>
       </nav>
       <Outlet />
-    </header>
+    </main>
   );
 };
 

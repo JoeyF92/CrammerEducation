@@ -1,4 +1,4 @@
-header {
+nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,10 +12,6 @@ header {
   padding: 0 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-family: "Verdana", sans-serif;
-}
-
-nav {
-  display: flex;
 }
 
 nav a {
@@ -36,6 +32,10 @@ nav a:last-child {
   margin-right: auto;
 }
 
+footer {
+  position: relative;
+  z-index: 1;
+}
 .brain-logo {
   width: 30px;
   height: 30px;

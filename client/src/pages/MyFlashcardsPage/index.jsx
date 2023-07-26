@@ -11,8 +11,9 @@ export default function MyFlashcardsPage() {
     async function loadLiked() {
       const response = await fetch(`http://localhost:3000/users/${id}/liked`)
       const data = await response.json()
+      if (data !== likedDecks) {
       setLikedDecks(data)
-    }
+    }}
     loadLiked()
   }, [likedDecks])
 
