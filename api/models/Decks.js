@@ -37,15 +37,21 @@ class Deck {
   }
 
   async update(data) {
+    const isLiked = data.isLiked;
+    const increment = isLiked ? 1 : -1; 
+  
     const response = await db.query(
-      "UPDATE decks SET likes = $1 WHERE deck_id = $2 RETURNING deck_id, likes;",
-      [this.likes + data.likes, this.id]
+      "UPDATE decks SET likes = likes + $1 WHERE deck_id = $2 RETURNING deck_id, likes;",
+      [increment, this.id]
     );
-    if (response.rows.length != 1) {
+  
+    if (response.rows.length !== 1) {
       throw new Error("Unable to update likes.");
     }
+  
     return new Deck(response.rows[0]);
   }
+  
 
   async destroy() {
     const response = await db.query(
