@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import AddDeckPage from "./pages/AddDeckPage";
 import DeckPage from "./pages/DeckPage";
@@ -17,18 +17,23 @@ import { Header } from "./components";
 
 import "./App.css";
 
+const ProtectedRoute = ({children}) => {
+  const token = localStorage.getItem('token');
+  return token ? children : <Navigate to="/login" replace />;
+}
+
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Header />}>
-        <Route index element={<HomePage />} />
-        <Route path="decks" element={<DecksPage />} />
-        <Route path="decks/:id" element={<DeckPage />} />
-        <Route path="cards" element={<FlashcardsPage />} />
-        <Route path="cards/:id" element={<FlashcardPage />} />
-        <Route path="myflashcards" element={<MyFlashcardsPage />} />
-        <Route path="createdeck" element={<AddDeckPage />} />
-        <Route path="createcard/:deckId" element={<AddFlashcardPage />} />
+        <Route index element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+        <Route path="decks" element={<ProtectedRoute><DecksPage /></ProtectedRoute>} />
+        <Route path="decks/:id" element={<ProtectedRoute><DeckPage /></ProtectedRoute>} />
+        <Route path="cards" element={<ProtectedRoute><FlashcardsPage /></ProtectedRoute>} />
+        <Route path="cards/:id" element={<ProtectedRoute><FlashcardPage /></ProtectedRoute>} />
+        <Route path="myflashcards" element={<ProtectedRoute><MyFlashcardsPage /></ProtectedRoute>} />
+        <Route path="createdeck" element={<ProtectedRoute><AddDeckPage /></ProtectedRoute>} />
+        <Route path="createcard/:deckId" element={<ProtectedRoute><AddFlashcardPage /></ProtectedRoute>} />
         <Route path="login" element={<LoginPage />} />
         <Route path="logout" element={<LogoutPage />} />
         <Route path="register" element={<RegisterPage />} />

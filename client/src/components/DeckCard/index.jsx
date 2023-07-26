@@ -14,7 +14,6 @@ const DeckCard = ({ id, name, subject, tags, likes, image}) => {
         }
         const response = await fetch(`http://localhost:3000/decks/${id}`, options)
         const data = await response.json();
-
         
     }
 

@@ -27,6 +27,7 @@ export default function LoginForm({
         return res.json();
       })
       .then((data) => {
+        localStorage.setItem('token', data.token)
         setMessage('User logged in successfully.');
         setTimeout(() => {
           setMessage('')
