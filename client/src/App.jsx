@@ -19,22 +19,23 @@ import "./App.css";
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Header />}>
-        <Route index element={<HomePage />} />
-        <Route path="decks" element={<DecksPage />} />
-        <Route path="decks/:id" element={<DeckPage />} />
-        <Route path="cards" element={<FlashcardsPage />} />
-        <Route path="cards/:id" element={<FlashcardPage />} />
-        <Route path="myflashcards" element={<MyFlashcardsPage />} />
-        <Route path="createdeck" element={<AddDeckPage />} />
-        <Route path="createcard/:deckId" element={<AddFlashcardPage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="logout" element={<LogoutPage />} />
-        <Route path="register" element={<RegisterPage />} />
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/decks" element={<DecksPage />} />
+        <Route path="/decks/:id" element={<DeckPage />} />
+        <Route path="/cards" element={<FlashcardsPage />} />
+        <Route path="/cards/:id" element={<FlashcardPage />} />
+        <Route path="/myflashcards" element={<MyFlashcardsPage />} />
+        <Route path="/createdeck" element={<AddDeckPage />} />
+        <Route path="/createcard/:deckId" element={<AddFlashcardPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/logout" element={<LogoutPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="*" element={<NotFoundPage />} />
-      </Route>
-    </Routes>
+      </Routes>
+    </Router>
   );
 };
 
