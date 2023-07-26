@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 export default function LoginForm({
   email,
@@ -8,6 +9,7 @@ export default function LoginForm({
   message,
   setMessage,
 }) {
+
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.clear(); //?
@@ -27,7 +29,7 @@ export default function LoginForm({
         return res.json();
       })
       .then((data) => {
-        localStorage.setItem('token', data.token)
+        localStorage.setItem("token", JSON.stringify(data.token))
         setMessage('User logged in successfully.');
         setTimeout(() => {
           setMessage('')
@@ -66,6 +68,7 @@ export default function LoginForm({
         />
       </div>
       <button type="submit">Login</button>
+      <p>New User? <Link to="/register">Register</Link></p>
       <p className="message">{message}</p>
     </form>
   );

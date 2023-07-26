@@ -18,28 +18,35 @@ import { Header } from "./components";
 import "./App.css";
 
 const ProtectedRoute = ({children}) => {
-  const token = localStorage.getItem('token');
-  return token ? children : <Navigate to="/login" replace />;
+  let token = localStorage.getItem('token');
+  
+  if (token) {
+    token = JSON.parse(token);
+    return token ? children : <Navigate to="/login" replace />;
+  }
+  return <Navigate to="/login" replace />;
 }
+
 
 const App = () => {
   return (
+    <Router>
+    <Header />
     <Routes>
-      <Route path="/" element={<Header />}>
-        <Route index element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
-        <Route path="decks" element={<ProtectedRoute><DecksPage /></ProtectedRoute>} />
-        <Route path="decks/:id" element={<ProtectedRoute><DeckPage /></ProtectedRoute>} />
-        <Route path="cards" element={<ProtectedRoute><FlashcardsPage /></ProtectedRoute>} />
-        <Route path="cards/:id" element={<ProtectedRoute><FlashcardPage /></ProtectedRoute>} />
-        <Route path="myflashcards" element={<ProtectedRoute><MyFlashcardsPage /></ProtectedRoute>} />
-        <Route path="createdeck" element={<ProtectedRoute><AddDeckPage /></ProtectedRoute>} />
-        <Route path="createcard/:deckId" element={<ProtectedRoute><AddFlashcardPage /></ProtectedRoute>} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="logout" element={<LogoutPage />} />
-        <Route path="register" element={<RegisterPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
+      <Route index element={<ProtectedRoute><HomePage /></ProtectedRoute>} path="/" />
+      <Route element={<ProtectedRoute><DecksPage /></ProtectedRoute>} path="decks" />
+      <Route element={<ProtectedRoute><DeckPage /></ProtectedRoute>} path="decks/:id" />
+      <Route element={<ProtectedRoute><FlashcardsPage /></ProtectedRoute>} path="cards" />
+      <Route element={<ProtectedRoute><FlashcardPage /></ProtectedRoute>} path="cards/:id" />
+      <Route element={<ProtectedRoute><MyFlashcardsPage /></ProtectedRoute>} path="myflashcards" />
+      <Route element={<ProtectedRoute><AddDeckPage /></ProtectedRoute>} path="createdeck" />
+      <Route element={<ProtectedRoute><AddFlashcardPage /></ProtectedRoute>} path="createcard/:deckId" />
+      <Route element={<LoginPage />} path="login" />
+      <Route element={<LogoutPage />} path="logout" />
+      <Route element={<RegisterPage />} path="register" />
+      <Route element={<NotFoundPage />} path="*" />
     </Routes>
+  </Router>
   );
 };
 
