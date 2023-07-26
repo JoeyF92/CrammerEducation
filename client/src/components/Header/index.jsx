@@ -11,7 +11,7 @@ const styles = ({ isActive }) => ({
 export default function Header() {
   return (
     <main>
-      <header>
+      {/* <header>
         <nav>
           <NavLink to="/" style={styles}>
             Home
@@ -29,7 +29,7 @@ export default function Header() {
             Logout
           </NavLink>
         </nav>
-      </header>
+      </header> */}
       <Outlet />
     </main>
   );

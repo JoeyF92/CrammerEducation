@@ -1,5 +1,13 @@
 import React from "react";
+import { CreateDeckForm } from "../../components";
 
-export default function AddDeckPage() {
-  return <h1>Add your own deck</h1>;
-}
+const AddDeckPage = () => {
+  return (
+    <div>
+      <h1>Add New Deck</h1>
+      <CreateDeckForm />
+    </div>
+  );
+};
+
+export default AddDeckPage;

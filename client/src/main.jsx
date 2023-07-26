@@ -4,9 +4,10 @@ import { BrowserRouter as Router } from "react-router-dom";
 import ReactDOM from 'react-dom'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faMagnifyingGlass, faLayerGroup, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faMagnifyingGlass, faLayerGroup, faPlus, faHeart } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faMagnifyingGlass, faLayerGroup, faPlus)
+library.add(faMagnifyingGlass, faLayerGroup, faPlus, faHeart)
+
 
 
 import App from "./App";
@@ -19,3 +20,5 @@ root.render(
     <App />
   </Router>
 );
+
+
