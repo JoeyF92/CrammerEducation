@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { DeckCard } from "../../components";
+import "./homepage.css"
 
 export default function HomePage() {
   const [trending, setTrending] = useState([]);
@@ -11,7 +12,7 @@ export default function HomePage() {
       //this route already orders the decks by number of likes
       const response = await fetch(`http://localhost:3000/decks`)
       const data = await response.json()
-      const trendingDecks = data.slice(0,3);
+      const trendingDecks = data.slice(0,6);
       setTrending(trendingDecks)
     }
     loadTrending()
@@ -34,31 +35,37 @@ export default function HomePage() {
 
   return (
     <div>
-      <div className="navigation-card">
+      <div className="deck-browse">
         <Link to="/decks">
-          <div className="card">
-            <h2>Browse Flashcards</h2>
-            <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" size="lg" />
+          <div className="browse-card">
+            <div className="browse-card-content">
+            <h3>Browse Flashcards</h3>
+            <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" size="2xl" />
+          </div>
           </div>
         </Link>
 
         <Link to="/myflashcards">
-          <div className="card">
-            <h2>My Flashcards</h2>
-            <FontAwesomeIcon icon="fa-solid fa-layer-group" size="lg"/>
+          <div className="browse-card">
+          <div className="browse-card-content">
+            <h3>My Flashcards</h3>
+            <FontAwesomeIcon icon="fa-solid fa-layer-group" size="2xl"/>
+          </div>
           </div>
         </Link>
 
         <Link to="/users/create">
-          <div className="card">
-            <h2>Create Flashcards</h2>
-            <FontAwesomeIcon icon="fa-solid fa-plus" size="lg" />
+          <div className="browse-card">
+          <div className="browse-card-content">
+            <h3>Create Flashcards</h3>
+            <FontAwesomeIcon icon="fa-solid fa-plus" size="2xl" />
+          </div>
           </div>
         </Link>
       </div>
 
       <h2 className="trending">Trending</h2>
-        <div className="navigation-card">
+        <div className="deck-main">
           {displayTrending()}
         </div>
       </div>

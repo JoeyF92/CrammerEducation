@@ -1,58 +1,147 @@
-.deck-holder {
+.deck-main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.deck-card {
+.deck-browse {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 90px;
+}
+
+.card {
+  border: 2px solid #2E1042;
+  /* background-color: #EF96BA; */
+  padding: 20px;
+  margin-bottom: 20px;
+  height: 200px;
+  width: 250px;
+  color: #2E1042;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px #2E1042;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid #333;
-  background-color: #6decaf;
+  justify-content: center;
+  position: relative;
+}
+
+.browse-card {
+  border: 2px solid #2E1042;
+  background-color: #00F0B5;
   padding: 20px;
-  width: calc(33.33% - 20px);
   margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 150px;
+  width: 250px;
+  color: #2E1042;
   border-radius: 10px;
-  font-family: "Verdana", sans-serif;
+  box-shadow: 0 4px 8px #2E1042;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
 }
 
-.deck-card img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 10px;
+.browse-card-content {
+  position: relative; /* Add this line to make sure the content is positioned above the background image */
+  z-index: 1; /* Add this line to ensure the content is on top of the background image */
+  padding: 10px;
+  background-color: #00F0B5;
+  color:#2E1042;
+  border-radius: 10px;
+  text-decoration: none;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.86;
 }
 
-.deck-card h3 {
-  font-size: 18px;
-  margin-bottom: 5px;
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(60%);
+  opacity: 0.86;
+  border-radius: 5px;
 }
 
-.deck-card p {
-  margin-bottom: 5px;
+.card-content {
+  position: relative; /* Add this line to make sure the content is positioned above the background image */
+  z-index: 1; /* Add this line to ensure the content is on top of the background image */
+  padding: 10px;
+  background-color: #00F0B5;
+  color:#2E1042;
+  border-radius: 10px;
+  text-decoration: none;
+  margin-top: 10px;
+  opacity: 0.86;
 }
 
-.deck-card .tags {
-  color: #5e239d;
+
+.card:hover {
+  transform: translateY(-5px);
+  transition: all 300ms ease;
+}
+
+.browse-card:hover {
+  transform: translateY(-5px);
+  transition: all 300ms ease;
+}
+
+.card:hover .background-image {
+
+  filter: brightness(100%);
+  opacity: 1;
+}
+
+
+/* ... Other styles ... */
+
+
+.deck-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.subject {
+  font-size: 16px;
+}
+
+.tags {
   font-size: 14px;
 }
 
-.deck-card .likes {
+.likes {
   display: flex;
   align-items: center;
-  font-size: 14px;
+  position: relative; /* Add this line to make sure the content is positioned above the background image */
+  z-index: 1;
+  align-self: flex-end;
+  margin-top: -10px;
 }
 
-/* .deck-card .like-button {
-  background-color: transparent;
+.like-button {
+  display: flex;
+  gap:5px;
+  background-color: white;
+  color: #EF96BA;
   border: none;
-  color: #5e239d;
-  font-size: 1.3rem;
-  margin-right: 5px;
   cursor: pointer;
+  font-size: 16px;
 }
 
-.activeLink {
-  text-decoration: underline;
-} */
+.deck-filters{
+  margin-bottom: 20px;
+}
+

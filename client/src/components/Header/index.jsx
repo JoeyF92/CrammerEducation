@@ -4,11 +4,11 @@ import "./header.css";
 
 const Header = () => {
   return (
-    <header>
+    <main>
+      <nav>
       <NavLink to="/" className="logo">
         BrainBoost
       </NavLink>
-      <nav>
         <NavLink to="/" activeclassnamee="activeLink">
           Home
         </NavLink>
@@ -26,7 +26,7 @@ const Header = () => {
         </NavLink>
       </nav>
       <Outlet />
-    </header>
+    </main>
   );
 };
 

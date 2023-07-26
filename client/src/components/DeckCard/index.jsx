@@ -49,23 +49,32 @@ const DeckCard = ({ id, name, subject, tags, likes, image }) => {
 
   return (
     <main>
-      <Link to={`/decks/${id}`}>
-        <div className="card">
+       
+      <div className="card">
+        {image && (
+          <div
+            className="background-image"
+            style={{ backgroundImage: `url(${image})` }}
+            alt={name}
+          />
+        )}
+        <Link to={`/decks/${id}`}>
+        <div className="card-content">
           <h3 className="deck-name">{name}</h3>
-
           <p className="subject">{subject}</p>
           <p className="tags"># {tags.join(", ")}</p>
-
-          {image && <img src={image} alt={name} />}
         </div>
-      </Link>{" "}
-      <br></br>
-      <div className="likes">
+        </Link>
+        <div className="likes">
         <button onClick={handleLikeUnlike} className="like-button">
           <FontAwesomeIcon icon="fa-solid fa-heart" size="lg" />
+          {likesCount}
         </button>
-        {likesCount}
+       
       </div>
+      </div>
+    
+      
     </main>
   );
 };
