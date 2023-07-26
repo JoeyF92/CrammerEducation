@@ -1,54 +1,58 @@
-.deck-main {
+.deck-holder {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.card {
-  border: 2px solid #333;
-  background-color: #6decaf;
-  padding: 20px;
-  margin-bottom: 20px;
-  height: 350px;
-  width: 250px;
-  color: #5e239d;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px #5e239d;
+.deck-card {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 2px solid #333;
+  background-color: #6decaf;
+  padding: 20px;
+  width: calc(33.33% - 20px);
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-family: "Verdana", sans-serif;
 }
 
-.card img {
-  width: 80%;
-  max-height: 200px;
-  object-fit: cover;
-  margin-top: auto;
+.deck-card img {
+  max-width: 100%;
+  height: auto;
   margin-bottom: 10px;
 }
 
-.deck-name {
-  font-size: 20px;
-  font-weight: bold;
+.deck-card h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
 }
 
-.subject {
-  font-size: 16px;
+.deck-card p {
+  margin-bottom: 5px;
 }
 
-.tags {
+.deck-card .tags {
+  color: #5e239d;
   font-size: 14px;
 }
 
-.likes {
+.deck-card .likes {
   display: flex;
   align-items: center;
+  font-size: 14px;
 }
 
-.like-button {
+.deck-card .like-button {
   background-color: transparent;
   border: none;
-  cursor: pointer;
-  font-size: 16px;
+  color: #5e239d;
+  font-size: 1.3rem;
   margin-right: 5px;
+  cursor: pointer;
+}
+
+.activeLink {
+  text-decoration: underline;
 }
