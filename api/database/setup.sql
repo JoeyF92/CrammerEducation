@@ -54,9 +54,9 @@ VALUES ('John', 'Doe', 'john.doe@example.com', 'password123', '{1,2}'),
 INSERT INTO decks (deck_name, subject, tags, likes, image, user_id)
 VALUES 
        ('Math Basics', 'Mathematics', '{"math", "basics", "numbers"}', 0, 'https://img.freepik.com/free-vector/chalkboard-with-math-elements_1411-88.jpg', 1),
-       ('Spanish Vocabulary', 'Language', '{"spanish", "vocabulary", "language"}', 0, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVtTUByPt-BqJTdfjvplhPSNfaLDIQnD6FCw&usqp=CAU', 2),
-       ('Biology Basics', 'Biology', '{"biology", "basics", "science"}', 0, 'https://png.pngtree.com/png-clipart/20210808/original/pngtree-handlettering-english-local-biology-png-image_6608914.jpg', 1),
-       ('Geography Basics', 'Geography', '{"geography", "basics", "earth"}', 0, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4tFsL0hJZ0GvwiD62P0dT7dm8wrrZNKnQEQ&usqp=CAU', 2);
+       ('Spanish Vocabulary', 'Language', '{"spanish", "vocabulary", "language"}', 0, 'https://img.freepik.com/free-photo/learn-spanish-language-online-education-concept_53876-132596.jpg?size=626&ext=jpg', 2),
+       ('Biology Basics', 'Biology', '{"biology", "basics", "science"}', 0, 'https://img.freepik.com/premium-vector/biology-concept-realistic-microscope-plant-seedling-pot_208581-1520.jpg?size=626&ext=jpg', 1),
+       ('Geography Basics', 'Geography', '{"geography", "basics", "earth"}', 0, 'https://img.freepik.com/premium-vector/nice-geography-cartel_25030-54490.jpg?size=626&ext=jpg', 2);
 
 
 INSERT INTO cards (deck_id, question, answer, image)
