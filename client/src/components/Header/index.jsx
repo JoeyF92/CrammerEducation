@@ -1,44 +1,3 @@
-// /* eslint-disable-next-line no-unused-vars */
-// import React from "react";
-
-// import { NavLink, Outlet } from "react-router-dom";
-// import "./header.css";
-
-// const styles = ({ isActive }) => ({
-//   textDecoration: isActive ? "underline" : "none",
-// });
-
-// export default function Header() {
-//   return (
-//     <main>
-//       <header>
-//         <nav>
-//           <NavLink to="/" style={styles}>
-//             Home
-//           </NavLink>
-//           <NavLink to="/myflashcards" style={styles}>
-//             My flashcards
-//           </NavLink>
-//           <NavLink to="/createdeck" style={styles}>
-//             Create flashcards
-//           </NavLink>
-//           <NavLink to="/decks" style={styles}>
-//             Browse
-//           </NavLink>
-//           <NavLink to="/logout" style={styles}>
-//             Logout
-//           </NavLink>
-//         </nav>
-//       </header>
-//       <Outlet />
-//     </main>
-//   );
-// }
-
-// {
-//   /* <footer>BrainBoost © 2023</footer> */
-// }
-
 import React from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "./header.css";
@@ -51,20 +10,22 @@ const Header = () => {
     navigate('/login')
   }
 
-
   return (
     <header>
+      <NavLink to="/" className="logo">
+        BrainBoost
+      </NavLink>
       <nav>
-        <NavLink to="/" activeClassName="activeLink">
+        <NavLink to="/" activeclassnamee="activeLink">
           Home
         </NavLink>
-        <NavLink to="/myflashcards" activeClassName="activeLink">
+        <NavLink to="/myflashcards" activeclassnamee="activeLink">
           My flashcards
         </NavLink>
-        <NavLink to="/createdeck" activeClassName="activeLink">
+        <NavLink to="/createdeck" activeclassname="activeLink">
           Create flashcards
         </NavLink>
-        <NavLink to="/decks" activeClassName="activeLink">
+        <NavLink to="/decks" activeclassname="activeLink">
           Browse
         </NavLink>
         <NavLink to="/login" onClick={handleLogout} activeClassName="activeLink">
