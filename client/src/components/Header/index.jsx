@@ -1,8 +1,15 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "./header.css";
 
 const Header = () => {
+  let navigate = useNavigate()
+
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    navigate('/login')
+  }
+
   return (
     <header>
       <NavLink to="/" className="logo">
@@ -21,7 +28,7 @@ const Header = () => {
         <NavLink to="/decks" activeclassname="activeLink">
           Browse
         </NavLink>
-        <NavLink to="/logout" activeclassname="activeLink">
+        <NavLink to="/login" onClick={handleLogout} activeClassName="activeLink">
           Logout
         </NavLink>
       </nav>

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"
 
 export default function RegisterForm({ firstName, setFirstName, lastName, setLastName, email, setEmail, password, setPassword, message, setMessage }) {
 
@@ -18,6 +19,8 @@ export default function RegisterForm({ firstName, setFirstName, lastName, setLas
   function handlePassword(e) {
     setPassword(e.target.value)
   }
+
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -42,7 +45,8 @@ export default function RegisterForm({ firstName, setFirstName, lastName, setLas
         setMessage('User registered successfully.');
         setTimeout(() => {
           setMessage('')
-        }, 5000)
+          navigate('/login')
+        }, 300)
       })
       .catch((err) => {
         console.log(err.message);
