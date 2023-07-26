@@ -79,4 +79,31 @@ async function getLiked(req, res) {
   }
 }
 
-module.exports = { register, login, destroy, update, show, getLiked };
+const likeUnlikeDeck = async (req, res) => {
+  const userId = req.params.userId;
+  const deckId = parseInt(req.params.deckId);
+
+  try {
+    const user = await User.getOneById(userId);
+
+    // Check if the user has already liked the deck
+    const isLiked = user.liked? user.liked.includes(deckId) : false;
+
+    if (isLiked) {
+      // User has liked the deck, so unlike it
+      await User.updateUserLiked(userId, deckId, false);
+      res.status(200).json({ message: "Deck unliked successfully." });
+    } else {
+      // User has not liked the deck, so like it
+      await User.updateUserLiked(userId, deckId, true);
+      res.status(200).json({ message: "Deck liked successfully." });
+    }
+    console.log(user.liked)
+  } catch (error) {
+    console.error("Error liking/unliking deck.", error);
+    res.status(500).json({ error: "Unable to like/unlike deck." });
+  }
+};
+
+
+module.exports = { register, login, destroy, update, show, getLiked, likeUnlikeDeck };
