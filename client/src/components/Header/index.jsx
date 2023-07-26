@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import brainLogo from "./brain.png";
 import "./header.css";
 
 const Header = () => {
@@ -7,6 +8,7 @@ const Header = () => {
     <header>
       <NavLink to="/" className="logo">
         BrainBoost
+        <img src={brainLogo} alt="Brain Logo" className="brain-logo" />
       </NavLink>
       <nav>
         <NavLink to="/" activeclassnamee="activeLink">

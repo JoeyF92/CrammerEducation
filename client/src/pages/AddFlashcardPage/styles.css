@@ -30,23 +30,34 @@ form {
   font-family: "Verdana", sans-serif;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  background-color: #f1f1f1;
+  position: relative;
 }
 
-form div {
+form {
   margin-bottom: 10px;
-  width: 100%;
+  width: 500px;
+  height: 500px;
 }
 
-form div input {
+form textarea {
   width: 95%;
-  height: 30px;
+  height: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #f1f1f1;
+  background-color: #f4f4ed;
+  resize: none;
+  line-height: normal;
+  box-sizing: border-box;
+}
+
+form textarea::placeholder {
+  background-color: #f4f4ed;
+  color: #ccc;
+  font-size: 16px;
+  padding: 10px;
 }
 
 button {
@@ -67,7 +78,34 @@ button:hover {
   box-shadow: 2px 2px 10px rgb(44, 45, 50);
   transform: translate(-2px, -2px);
 }
-.brains {
+#create {
+  margin: 20px auto;
+  background-color: #6decaf;
+  border: none;
+  color: #5e239d;
+  padding: 15px;
+  font-size: 1.3rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px #5e239d;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-family: "Verdana", sans-serif;
+}
+#create:hover {
+  box-shadow: 2px 2px 10px rgb(44, 45, 50);
+  transform: translate(-2px, -2px);
+}
+.row {
+  display: flex;
+  gap: 10px;
+}
+.qa1-image {
+  position: absolute;
+  bottom: 350px;
+  right: 10px;
+  width: 400px;
+}
+.qa2-image {
   position: absolute;
   bottom: 100px;
   left: 10px;

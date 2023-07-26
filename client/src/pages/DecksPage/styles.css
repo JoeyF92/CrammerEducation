@@ -34,7 +34,7 @@
 }
 
 .deck-card .tags {
-  color: #5e239d;
+  color: #2e1042;
   font-size: 14px;
 }
 
@@ -44,7 +44,7 @@
   font-size: 14px;
 }
 
-/* .deck-card .like-button {
+.deck-card .like-button {
   background-color: transparent;
   border: none;
   color: #5e239d;
@@ -55,4 +55,4 @@
 
 .activeLink {
   text-decoration: underline;
-} */
+}
