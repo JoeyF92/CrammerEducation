@@ -25,7 +25,6 @@ const ProtectedRoute = ({children}) => {
   return <Navigate to="/login" replace />;
 }
 
-
 const MainApp = () => {
   return (
     <>
@@ -34,7 +33,6 @@ const MainApp = () => {
         <Route index element={<ProtectedRoute><HomePage /></ProtectedRoute>} path="/" />
         <Route element={<ProtectedRoute><DecksPage /></ProtectedRoute>} path="decks" />
         <Route element={<ProtectedRoute><DeckPage /></ProtectedRoute>} path="decks/:id" />
-        <Route element={<ProtectedRoute><FlashcardsPage /></ProtectedRoute>} path="cards" />
         <Route element={<ProtectedRoute><FlashcardPage /></ProtectedRoute>} path="cards/:id" />
         <Route element={<ProtectedRoute><MyFlashcardsPage /></ProtectedRoute>} path="myflashcards" />
         <Route element={<ProtectedRoute><AddDeckPage /></ProtectedRoute>} path="createdeck" />
