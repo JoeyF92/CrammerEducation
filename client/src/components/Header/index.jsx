@@ -1,13 +1,23 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import brainLogo from "./brain.png";
+
 import "./header.css";
 
 const Header = () => {
+  let navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
     <main>
       <nav>
       <NavLink to="/" className="logo">
         BrainBoost
+        <img src={brainLogo} alt="Brain Logo" className="brain-logo" />
       </NavLink>
         <NavLink to="/" activeclassnamee="activeLink">
           Home
@@ -21,7 +31,11 @@ const Header = () => {
         <NavLink to="/decks" activeclassname="activeLink">
           Browse
         </NavLink>
-        <NavLink to="/logout" activeclassname="activeLink">
+        <NavLink
+          to="/login"
+          onClick={handleLogout}
+          activeClassName="activeLink"
+        >
           Logout
         </NavLink>
       </nav>

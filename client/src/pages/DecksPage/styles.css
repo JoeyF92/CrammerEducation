@@ -118,7 +118,8 @@
   font-size: 16px;
 }
 
-.tags {
+.deck-card .tags {
+  color: #2e1042;
   font-size: 14px;
 }
 
@@ -145,3 +146,6 @@
   margin-bottom: 20px;
 }
 
+.activeLink {
+  text-decoration: underline;
+}
