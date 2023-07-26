@@ -28,26 +28,35 @@ const ProtectedRoute = ({children}) => {
 }
 
 
-const App = () => {
+const MainApp = () => {
   return (
-    <Router>
-    <Header />
-    <Routes>
-      <Route index element={<ProtectedRoute><HomePage /></ProtectedRoute>} path="/" />
-      <Route element={<ProtectedRoute><DecksPage /></ProtectedRoute>} path="decks" />
-      <Route element={<ProtectedRoute><DeckPage /></ProtectedRoute>} path="decks/:id" />
-      <Route element={<ProtectedRoute><FlashcardsPage /></ProtectedRoute>} path="cards" />
-      <Route element={<ProtectedRoute><FlashcardPage /></ProtectedRoute>} path="cards/:id" />
-      <Route element={<ProtectedRoute><MyFlashcardsPage /></ProtectedRoute>} path="myflashcards" />
-      <Route element={<ProtectedRoute><AddDeckPage /></ProtectedRoute>} path="createdeck" />
-      <Route element={<ProtectedRoute><AddFlashcardPage /></ProtectedRoute>} path="createcard/:deckId" />
-      <Route element={<LoginPage />} path="login" />
-      <Route element={<LogoutPage />} path="logout" />
-      <Route element={<RegisterPage />} path="register" />
-      <Route element={<NotFoundPage />} path="*" />
-    </Routes>
-  </Router>
+    <>
+      <Header />
+      <Routes>
+        <Route index element={<ProtectedRoute><HomePage /></ProtectedRoute>} path="/" />
+        <Route element={<ProtectedRoute><DecksPage /></ProtectedRoute>} path="decks" />
+        <Route element={<ProtectedRoute><DeckPage /></ProtectedRoute>} path="decks/:id" />
+        <Route element={<ProtectedRoute><FlashcardsPage /></ProtectedRoute>} path="cards" />
+        <Route element={<ProtectedRoute><FlashcardPage /></ProtectedRoute>} path="cards/:id" />
+        <Route element={<ProtectedRoute><MyFlashcardsPage /></ProtectedRoute>} path="myflashcards" />
+        <Route element={<ProtectedRoute><AddDeckPage /></ProtectedRoute>} path="createdeck" />
+        <Route element={<ProtectedRoute><AddFlashcardPage /></ProtectedRoute>} path="createcard/:deckId" />
+        <Route element={<LogoutPage />} path="logout" />
+        <Route element={<NotFoundPage />} path="*" />
+      </Routes>
+    </>
   );
 };
 
+const App = () => (
+  <Router>
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/*" element={<MainApp />} />
+    </Routes>
+  </Router>
+);
+
 export default App;
+
