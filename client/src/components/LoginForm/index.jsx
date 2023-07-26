@@ -24,7 +24,7 @@ export default function LoginForm({email, setEmail, password, setPassword, messa
         setTimeout(() => {
           setMessage('')
           window.location = "/"
-        }, 500);
+        }, 300);
       })
       .catch((err) => {
         console.log(err)
