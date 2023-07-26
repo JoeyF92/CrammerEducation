@@ -29,7 +29,8 @@ describe("Cards controller", () => {
         },
       ];
       jest.spyOn(Card, "getAll").mockResolvedValue(cards);
-      await cardsController.index({ id: 1 }, mockRes);
+      const mockReq = { params: { id: 1 } };
+      await cardsController.index({ mockReq }, mockRes);
       expect(mockStatus).toHaveBeenCalledWith(200);
       expect(mockJson).toHaveBeenCalledWith(cards);
     });
