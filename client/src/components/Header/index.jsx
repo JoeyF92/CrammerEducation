@@ -14,7 +14,12 @@ const Header = () => {
         <nav>
           <NavLink to="/" className="logo">
             BrainBoost
-            <img src={brainLogo} alt="Brain Logo" className="brain-logo" />
+            <img
+              id="brain"
+              src={brainLogo}
+              alt="Brain Logo"
+              className="brain-logo"
+            />
           </NavLink>
           <NavLink to="/" activeclassnamee="activeLink">
             Home
