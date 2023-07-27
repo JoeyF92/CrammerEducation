@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {LoginForm} from "../../components";
+import './login.css';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -7,8 +8,8 @@ export default function LoginPage() {
   const [message, setMessage] = useState('');
   
   return (
-    <div>
-      <h1>Please login</h1>
+    <div className="container"> 
+      <h1>Login</h1>     
       <LoginForm 
         email={email} 
         setEmail={setEmail}
