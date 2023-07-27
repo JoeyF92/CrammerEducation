@@ -31,7 +31,6 @@ const DecksPage = () => {
           subject={d.subject}
           tags={d.tags}
           likes={d.likes}
-          image={d.image}
         />
       ));
   }
