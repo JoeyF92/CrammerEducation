@@ -54,7 +54,7 @@ export default function LoginForm({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="login-form">
       <div>
         Email:{" "}
         <input value={email} type="text" onChange={(e) => setEmail(e.target.value)} />
@@ -67,7 +67,8 @@ export default function LoginForm({
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button type="submit">Login</button>
+      {/* <button type="submit">Login</button> */}
+      <input type="submit" value="Login" />
       <p>New User? <Link to="/register">Register</Link></p>
       <p className="message">{message}</p>
     </form>

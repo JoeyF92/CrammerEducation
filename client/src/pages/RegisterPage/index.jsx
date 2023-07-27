@@ -12,6 +12,7 @@ export default function RegisterPage() {
 
   return (  
     <div className="container">
+      <h1>Welcome to BrainBoost - Fuel Your Mind, One Card at a Time!</h1>
       <h1>Please Register</h1>
       <RegisterForm 
         firstName={firstName} setFirstName={setFirstName}

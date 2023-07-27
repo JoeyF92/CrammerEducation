@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 export default function RegisterForm({ firstName, setFirstName, lastName, setLastName, email, setEmail, password, setPassword, message, setMessage }) {
 
@@ -72,7 +72,7 @@ export default function RegisterForm({ firstName, setFirstName, lastName, setLas
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="register-form">
       <div>
       <label>First Name: <input type="text" value={firstName} onChange={handleFirstName} /></label>
       </div>
@@ -86,6 +86,7 @@ export default function RegisterForm({ firstName, setFirstName, lastName, setLas
       <label>Password: <input type="password" value={password} onChange={handlePassword} /></label>
       </div>
       <input type="submit" value="Register" />
+      <p>Already Registered? <Link to="/login">Login</Link></p>
       <p className='message'>{message}</p>
     </form>
   )
