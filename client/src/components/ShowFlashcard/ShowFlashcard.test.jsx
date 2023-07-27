@@ -2,26 +2,23 @@
 import React from "react";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { screen, render, cleanup } from "@testing-library/react";
-
-
+import matchers from "@testing-library/jest-dom/matchers";
+expect.extend(matchers);
 import ShowFlashcard from ".";
 
 describe("Flashcard component", () => {
-    beforeEach(() => {
+  beforeEach(() => {
     render(<ShowFlashcard />);
-    });
+  });
 
-    // Clean up the DOM after each test
-    afterEach(() => {
+  // Clean up the DOM after each test
+  afterEach(() => {
     cleanup();
-    });
+  });
 
-
-    it("Displays a heading with appropriate text", () => {
-        
-        const elem = screen.getByRole("heading");
-        expect(elem).toBeInTheDocument();
-        expect(elem.textContent).toBe("Flashcard");
-    }
-
-})
+  it("Displays a heading with appropriate text", () => {
+    const elem = screen.getByRole("heading");
+    expect(elem).toBeInTheDocument;
+    expect(elem.textContent).toBe("Flashcard");
+  });
+});

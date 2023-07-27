@@ -2,7 +2,8 @@
 import React from "react";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { screen, render, cleanup } from "@testing-library/react";
-
+import matchers from "@testing-library/jest-dom/matchers";
+expect.extend(matchers);
 import ShowFlashcardsList from ".";
 
 describe("FlashCardsList component", () => {
@@ -17,7 +18,7 @@ describe("FlashCardsList component", () => {
 
   it("Displays a heading with appropriate text", () => {
     const elem = screen.getByRole("heading");
-    expect(elem).toBeInTheDocument();
+    expect(elem).toBeInTheDocument;
     expect(elem.textContent).toBe("FlashcardsList");
   });
 });

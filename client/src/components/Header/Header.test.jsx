@@ -29,10 +29,10 @@ describe("PageWrapper component", () => {
     cleanup();
   });
 
-  it("Displays a nav bar with five children", () => {
+  it("Displays a nav bar with six children", () => {
     const nav = screen.getByRole("navigation");
     expect(nav).toBeInTheDocument();
-    expect(nav.childNodes.length).toBe(5);
+    expect(nav.childNodes.length).toBe(6);
   });
 
   it("Navigates to the correct route when NavLink is clicked", () => {

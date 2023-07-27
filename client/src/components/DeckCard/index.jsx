@@ -1,3 +1,4 @@
+/* eslint-disable-next-line no-unused-vars */
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -49,32 +50,33 @@ const DeckCard = ({ id, name, subject, tags, likes, image }) => {
 
   return (
     <main>
-       
       <div className="card">
         {image && (
           <div
             className="background-image"
             style={{ backgroundImage: `url(${image})` }}
             alt={name}
+            data-testid="deck-card-background"
           />
         )}
         <Link to={`/decks/${id}`}>
-        <div className="card-content">
-          <h3 className="deck-name">{name}</h3>
-          <p className="subject">{subject}</p>
-          <p className="tags"># {tags.join(", ")}</p>
-        </div>
+          <div className="card-content">
+            <h3 className="deck-name">{name}</h3>
+            <p className="subject">{subject}</p>
+            <p className="tags"># {tags.join(", ")}</p>
+          </div>
         </Link>
         <div className="likes">
-        <button onClick={handleLikeUnlike} className="like-button">
-          <FontAwesomeIcon icon="fa-solid fa-heart" size="lg" />
-          {likesCount}
-        </button>
-       
+          <button
+            onClick={handleLikeUnlike}
+            className="like-button"
+            data-testid="like-button"
+          >
+            <FontAwesomeIcon icon="fa-solid fa-heart" size="lg" />
+            {likesCount}
+          </button>
+        </div>
       </div>
-      </div>
-    
-      
     </main>
   );
 };

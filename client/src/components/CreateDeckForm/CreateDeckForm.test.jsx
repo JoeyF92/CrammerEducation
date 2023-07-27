@@ -1,39 +1,28 @@
-import React from 'react';
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { screen, render, cleanup, getByRole } from '@testing-library/react'
-import userEvent from '@testing-library/user-event';
+import React from "react";
+import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { screen, render, cleanup, getByRole } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
-import matchers from '@testing-library/jest-dom/matchers';
+import matchers from "@testing-library/jest-dom/matchers";
 expect.extend(matchers);
 
-import CreateDeckForm from '.';
+import CreateDeckForm from ".";
 
 describe("CreateDeckForm component", () => {
+  beforeEach(() => {
+    render(<CreateDeckForm />);
+  });
 
-    beforeEach(() => {
-        render(<CreateDeckForm />)
-    });
+  afterEach(() => {
+    cleanup();
+  });
 
-    afterEach(() => {
-        cleanup();
-    })
-
-    it("Displays a deck with appropriate text", () => {
-        const elem = screen.getByRole("heading");
-        expect(elem).toBeInTheDocument();
-        expect(elem.textContent).toBe("CreateDeckForm!")
-    })
-
-
-})
-
-
-
-
-
-
-
-
+  it("Displays a deck with appropriate text", () => {
+    const elem = screen.getByRole("heading");
+    expect(elem).toBeInTheDocument();
+    expect(elem.textContent).toBe("CreateDeckForm!");
+  });
+});
 
 // CreateDeckForm.test.jsx
 // import React from "react";
@@ -110,15 +99,6 @@ describe("CreateDeckForm component", () => {
 //     await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/createcard/12345"));
 //   });
 // });
-
-
-
-
-
-
-
-
-
 
 //can be reused
 // import React from 'react';
