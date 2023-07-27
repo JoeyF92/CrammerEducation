@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import img from "./QA.png";
+import img from "./qa.png";
 
 const CreateFlashcardForm = ({ deckId, cards }) => {
   const [formData, setFormData] = useState({
