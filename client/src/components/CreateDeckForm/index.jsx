@@ -103,6 +103,7 @@ const CreateDeckForm = () => {
         <p className="message">{message}</p>
       </form>
       <img src={img} alt="brains" className="brains" />
+      {/* <img src={img} alt="brains" className="brains-mirrored" /> */}
     </>
   );
 };
