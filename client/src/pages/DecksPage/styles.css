@@ -36,8 +36,8 @@
   z-index: 1;
 }
 .card-content {
-  position: relative; /* Add this line to make sure the content is positioned above the background image */
-  z-index: 1; /* Add this line to ensure the content is on top of the background image */
+  position: relative;
+  z-index: 1;
   padding: 10px;
   background-color: #2e1042;
   color: white;
@@ -63,8 +63,8 @@
 }
 
 .browse-card-content {
-  position: relative; /* Add this line to make sure the content is positioned above the background image */
-  z-index: 1; /* Add this line to ensure the content is on top of the background image */
+  position: relative;
+  z-index: 1;
   padding: 10px;
   background-color: #ef96ba;
   color: #2e1042;
@@ -112,6 +112,12 @@
   font-size: 14px;
 }
 
+#decks {
+  color: #2e1042;
+  font-family: "Verdana", sans-serif;
+  font-weight: 550;
+}
+
 .likes {
   position: absolute;
   bottom: 0;
@@ -133,7 +139,20 @@
 }
 
 .deck-filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 20px;
+}
+.deck-filters input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f1f1f1;
+  width: 300px;
+  max-width: 100%;
 }
 
 .activeLink {
@@ -148,19 +167,16 @@
   margin-top: 60px;
 }
 
-
-
 .deck-main h1 {
   text-align: center !important;
 }
 
-.deck-section {
+.deck-section-liked {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .move-right {
-  padding-left: 225px; 
+  padding-left: 225px;
 }
-

@@ -1,16 +1,22 @@
-import React from 'react';
+import React from "react";
 
-const DeckFilter = ({textFilter, setTextFilter}) => {
+const DeckFilter = ({ textFilter, setTextFilter }) => {
+  function updateTextFilter(e) {
+    setTextFilter(e.target.value);
+  }
 
-    function updateTextFilter (e) {
-        setTextFilter(e.target.value);
-    }
-
-    return (
-        <div className="deck-filters">
-            <label>Search:<input type="text" value={textFilter} onChange={updateTextFilter} /></label>
-        </div>
-    )
+  return (
+    <div className="deck-filters">
+      <label>
+        <input
+          type="text"
+          value={textFilter}
+          onChange={updateTextFilter}
+          placeholder="Search"
+        />
+      </label>
+    </div>
+  );
 };
 
 export default DeckFilter;
