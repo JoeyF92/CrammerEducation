@@ -1,40 +1,50 @@
-/* eslint-disable-next-line no-unused-vars */
 import React from "react";
-
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import brainLogo from "./brain.png";
 import "./header.css";
-
-const styles = ({ isActive }) => ({
-  textDecoration: isActive ? "underline" : "none",
-});
-
-export default function Header() {
+const Header = () => {
+  let navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
   return (
     <main>
-      {/* <header>
+      <header>
         <nav>
-          <NavLink to="/" style={styles}>
+          <NavLink to="/" className="logo">
+            BrainBoost
+            <img
+              id="brain"
+              src={brainLogo}
+              alt="Brain Logo"
+              className="brain-logo"
+            />
+          </NavLink>
+          <NavLink to="/" activeclassnamee="activeLink">
             Home
           </NavLink>
-          <NavLink to="/myflashcards" style={styles}>
+          <NavLink to="/myflashcards" activeclassnamee="activeLink">
             My flashcards
           </NavLink>
-          <NavLink to="/createdeck" style={styles}>
+          <NavLink to="/createdeck" activeclassname="activeLink">
             Create flashcards
           </NavLink>
-          <NavLink to="/decks" style={styles}>
+          <NavLink to="/decks" activeclassname="activeLink">
             Browse
           </NavLink>
-          <NavLink to="/logout" style={styles}>
+          <NavLink
+            to="/login"
+            onClick={handleLogout}
+            activeclassname="activeLink"
+          >
             Logout
           </NavLink>
         </nav>
-      </header> */}
-      <Outlet />
+        <Outlet />
+      </header>
+      <footer>BrainBoost © 2023</footer>
     </main>
   );
-}
-
-{
-  /* <footer>BrainBoost © 2023</footer> */
-}
+};
+export default Header;

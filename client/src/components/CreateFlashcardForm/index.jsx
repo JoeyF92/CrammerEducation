@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import img from "./qa.png";
 
 const CreateFlashcardForm = ({ deckId, cards }) => {
   const [formData, setFormData] = useState({
@@ -41,23 +43,33 @@ const CreateFlashcardForm = ({ deckId, cards }) => {
   console.log("Deck ID:", deckId);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="question"
-        value={formData.question}
-        onChange={handleChange}
-        placeholder="Question"
-      />
-      <input
-        type="text"
-        name="answer"
-        value={formData.answer}
-        onChange={handleChange}
-        placeholder="Answer"
-      />
-      <button type="submit">Create Flashcard</button>
-    </form>
+    <>
+      <img src={img} alt="Q&A" className="qa2-image" />
+      <form onSubmit={handleSubmit}>
+        <textarea
+          type="text"
+          name="question"
+          value={formData.question}
+          onChange={handleChange}
+          placeholder="Question"
+        />
+        <br />
+        <textarea
+          type="text"
+          name="answer"
+          value={formData.answer}
+          onChange={handleChange}
+          placeholder="Answer"
+        />
+        <div className="row">
+          <button type="submit">Create Flashcard</button>
+          <Link to="/decks" id="create">
+            Complete deck
+          </Link>
+        </div>
+      </form>
+      <img src={img} alt="Q&A" className="qa1-image" />
+    </>
   );
 };
 

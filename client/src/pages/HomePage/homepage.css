@@ -1,23 +1,7 @@
-main {
-    margin-top: 0;
-    background-color: white;
-    padding: 10px;
-  }
-  
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  nav a {
-    color: rgb(224, 15, 15);
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 10px;
-  }
-  nav a.active {
-    text-decoration: underline;
-  }
+body {
+    font-family: Arial, sans-serif !important;
+    background-image: url('homepage-background.jpg') !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important; 
+}
   

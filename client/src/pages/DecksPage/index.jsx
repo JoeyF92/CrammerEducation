@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-
 import { DeckFilter, DeckCard } from "../../components";
+import "./styles.css";
 
 const DecksPage = () => {
   const [decks, setDecks] = useState([]);
@@ -20,7 +20,7 @@ const DecksPage = () => {
     return decks
       .filter(
         (d) =>
-          textFilter.length == 0 ||
+          textFilter.length === 0 ||
           d.name.toLowerCase().includes(textFilter.toLowerCase())
       )
       .map((d) => (
@@ -37,10 +37,10 @@ const DecksPage = () => {
   }
 
   return (
-    <main className="deck-main">
+    <main>
       <h1>Decks</h1>
       <DeckFilter textFilter={textFilter} setTextFilter={setTextFilter} />
-      <div className="deck-holder">{displayDecks()}</div>
+      <div className="deck-main">{displayDecks()}</div>
     </main>
   );
 };

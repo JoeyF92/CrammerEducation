@@ -41,7 +41,7 @@ class User {
 
   static async create(data) {
     const { first_name, last_name, email, password } = data;
-    console.log(data);
+
     let response = await db.query(
       "INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING user_id;",
       [first_name, last_name, email, password]
@@ -80,6 +80,39 @@ class User {
 
     return this;
   }
+
+  static async updateUserLiked(id, deckIdToAddOrRemove, add = true) {
+    try {
+      const user = await User.getOneById(id);
+  
+      // Check if user.liked is null and initialize it as an empty array if needed
+      user.liked = user.liked || [];
+  
+      if (add) {
+        // Append deckIdToAddOrRemove to liked array if it's not already there
+        if (!user.liked.includes(deckIdToAddOrRemove)) {
+          user.liked.push(deckIdToAddOrRemove);
+        }
+      } else {
+        // Remove from liked array if it's present
+        user.liked = user.liked.filter((id) => id !== deckIdToAddOrRemove);
+      }
+  
+      const response = await db.query(
+        "UPDATE users SET liked = $1 WHERE user_id = $2 RETURNING *;",
+        [user.liked, id]
+      );
+  
+      if (response.rows.length !== 1) {
+        throw new Error("Unable to update liked decks for the user.");
+      }
+  
+      return new User(response.rows[0]);
+    } catch (error) {
+      throw new Error("Unable to update liked decks for the user");
+    }
+  }
+  
 }
 
 module.exports = User;

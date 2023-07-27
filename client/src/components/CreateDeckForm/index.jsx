@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CreateFlashcardForm from "../CreateFlashcardForm";
+import img from "./brainsbulb.png";
 
 const CreateDeckForm = () => {
   const [deckName, setDeckName] = useState("");
@@ -78,25 +79,32 @@ const CreateDeckForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        Deck Name:{" "}
-        <input value={deckName} onChange={(e) => setDeckName(e.target.value)} />
-      </div>
-      <div>
-        Subject:{" "}
-        <input value={subject} onChange={(e) => setSubject(e.target.value)} />
-      </div>
-      <div>
-        Tags: <input value={tags} onChange={(e) => setTags(e.target.value)} />
-      </div>
-      <div>
-        Image URL:{" "}
-        <input value={image} onChange={(e) => setImage(e.target.value)} />
-      </div>
-      <button type="submit">Create Deck</button>
-      <p className="message">{message}</p>
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <div>
+          Deck Name:{" "}
+          <input
+            value={deckName}
+            onChange={(e) => setDeckName(e.target.value)}
+          />
+        </div>
+        <div>
+          Subject:{" "}
+          <input value={subject} onChange={(e) => setSubject(e.target.value)} />
+        </div>
+        <div>
+          Tags: <input value={tags} onChange={(e) => setTags(e.target.value)} />
+        </div>
+        <div>
+          Image URL:{" "}
+          <input value={image} onChange={(e) => setImage(e.target.value)} />
+        </div>
+        <button type="submit">Create Deck</button>
+        <p className="message">{message}</p>
+      </form>
+      <img src={img} alt="brains" className="brains" />
+      {/* <img src={img} alt="brains" className="brains-mirrored" /> */}
+    </>
   );
 };
 

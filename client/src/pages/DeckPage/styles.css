@@ -1,76 +1,165 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .card-box {
+  position: relative;
   border: 2px solid #333;
-  background-color: #6decaf;
+  background-color: #ef96ba;
   padding: 20px;
   margin-bottom: 20px;
   height: 350px;
   width: 450px;
   color: #5e239d;
-
   border-radius: 10px;
   box-shadow: 0 4px 8px #5e239d;
-  display: flex;
-  justify-content: center;
   align-items: top;
   flex-direction: column;
   font-family: "Verdana", sans-serif;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
 }
 
-.question-box {
-  background-color: #6decaf;
+.card-box .question-box,
+.card-box .answer-box {
+  background-color: #ef96ba;
   cursor: pointer;
-  text-align: center;
-  font-weight: bold;
-}
-
-.answer-box {
-  font-weight: bold;
-  text-align: center;
-}
-
-/* .card-box {
-  width: 300px;
-  height: 200px;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  padding: 20px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  text-align: center;
   align-items: center;
-  cursor: pointer;
-  background-color: #f9f9f9;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+  height: 30%;
+  backface-visibility: hidden;
 }
 
-.card:hover {
-  transform: scale(1.05);
+.card-box .question-answer {
+  font-size: 24px;
+  margin-top: 5px;
 }
 
-.question-box {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
+.card-box .question-box p,
+.card-box .answer-box p {
+  font-size: 24px;
 }
 
-.answer-box {
-  font-size: 16px;
-  font-style: italic;
-  display: none;
+.card-box .answer-box {
+  justify-content: center;
+  flex-direction: column;
+  transform: rotateY(180deg);
 }
 
-.reveal-btn {
-  background-color: #007bff;
-  color: #fff;
+.card-box .answer-text {
+  margin-top: 20px;
+}
+
+.card-box.flip {
+  transform: rotateY(180deg);
+}
+
+.card-box.flip .question-box {
+  transform: rotateY(0deg);
+}
+
+.card-box.flip .answer-box {
+  transform: rotateY(180deg);
+}
+
+.btn {
+  margin: 20px 10px;
+  background-color: #ff9eff;
   border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
-  margin-top: 10px;
+  color: #5e239d;
+  padding: 15px;
+  min-width: 230px;
+  font-size: 1.3rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px #5e239d;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.2s ease-in-out;
+  font-family: "Verdana", sans-serif;
+  transform-style: preserve-3d;
 }
 
-.reveal-btn:hover {
-  background-color: #0056b3;
-} */
+.btn:hover {
+  box-shadow: 2px 2px 10px rgb(44, 45, 50);
+  transform: translate(-2px, -2px);
+}
+
+.guess {
+  color: #5e239d;
+  font-family: "Verdana", sans-serif;
+  font-weight: 550;
+  height: 80px;
+}
+
+.questions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+.target {
+  position: absolute;
+  top: 105px;
+  right: -0px;
+  width: 220px;
+  height: 120px;
+}
+
+.card-box .question-label {
+  font-size: 24px;
+}
+
+.card-box.flip .question-label {
+  font-family: "Verdana", sans-serif;
+  font-size: 24px;
+  transform: rotateY(0deg);
+}
+
+.card-box.flip .answer-label {
+  font-family: "Verdana", sans-serif;
+  font-size: 24px;
+  transform: rotateY(-180deg);
+}
+
+.card-box.flip .card-number {
+  transform: rotateY(-180deg);
+}
+.card-number {
+  font-size: 20px;
+  font-family: "Verdana", sans-serif;
+}
+
+#finish {
+  font-size: large;
+  font-family: "Verdana", sans-serif;
+}
+
+#link {
+  font-size: 30px;
+}
+
+.img3-1 {
+  position: absolute;
+  bottom: 350px;
+  right: 10px;
+  width: 400px;
+}
+.img3-2 {
+  position: absolute;
+  bottom: 100px;
+  left: 10px;
+  width: 400px;
+}

@@ -37,10 +37,15 @@ async function destroy(req, res) {
   try {
     const id = parseInt(req.params.id);
     const card = await Card.getOneById(id);
-    await card.destroy();
-    res.sendStatus(204);
+    const deletionResult = await card.destroy();
+    if (deletionResult.deleted) {
+      res.status(204);
+    } else {
+      res.status(404).json({ error: "Card not found." });
+    }
   } catch (err) {
-    res.status(404).json({ error: err.message });
+    console.error("Error during deletion:", err);
+    res.status(500).json({ error: err.message });
   }
 }
 

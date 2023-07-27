@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "./styles.css";
+import img from "./questions.png";
+import img2 from "./target.png";
+import img3 from "./qa.png";
 
 const DeckPage = () => {
   const { id } = useParams();
@@ -49,45 +52,78 @@ const DeckPage = () => {
     setCurrentCardIndex((prevIndex) => prevIndex + 1);
   };
 
+  const handlePreviousCard = () => {
+    setShowAnswer(false);
+    setCurrentCardIndex((prevIndex) => prevIndex - 1);
+  };
+
   return (
-    <div>
-      {deck ? (
-        <div>
-          Try to guess the correct answer first, and then click on the card to
-          reveal the correct solution.
-        </div>
-      ) : (
-        <p>Loading deck...</p>
-      )}
+    <>
+      <img src={img3} alt="QA" className="img3-1" />
+      <div className="container">
+        {cards.length > 0 && currentCardIndex < cards.length && (
+          <div className="guess">
+            Try to guess the correct answer first, and then click on the card to
+            reveal the correct solution.
+          </div>
+        )}
 
-      {cards.length > 0 && currentCardIndex < cards.length && (
-        <div className="card-box">
-          <h2>{currentCardIndex + 1}</h2>
-          {!showAnswer ? (
-            <div className="question-box" onClick={handleRevealAnswer}>
-              <p>Question: {cards[currentCardIndex].question}</p>
-            </div>
-          ) : (
-            <div className="answer-box">
-              <p>Answer: {cards[currentCardIndex].answer}</p>
-            </div>
-          )}
-        </div>
-      )}
+        {cards.length > 0 && currentCardIndex < cards.length && (
+          <div
+            className={`card-box ${showAnswer ? "flip" : ""}`}
+            onClick={() => setShowAnswer((prev) => !prev)}
+          >
+            <h2 className={`card-number ${showAnswer ? "flip" : ""}`}>
+              {currentCardIndex + 1}
+            </h2>
+            {showAnswer ? (
+              <p className="answer-label">Answer:</p>
+            ) : (
+              <p className="question-label">Question:</p>
+            )}
+            {!showAnswer ? (
+              <div className="question-box" style={{ pointerEvents: "none" }}>
+                <p id="question">{cards[currentCardIndex].question}</p>
+                <img src={img} alt="questions" className="questions" />
+              </div>
+            ) : (
+              <div className="answer-box" style={{ pointerEvents: "none" }}>
+                <p className="answer-text">{cards[currentCardIndex].answer}</p>
+                <img src={img2} alt="target" className="target" />
+              </div>
+            )}
+          </div>
+        )}
 
-      {cards.length > 0 && currentCardIndex < cards.length && (
-        <button onClick={handleNextCard}>Next Card</button>
-      )}
+        {cards.length > 0 && currentCardIndex < cards.length && (
+          <div className="button-row">
+            {currentCardIndex > 0 && (
+              <button className="btn" onClick={handlePreviousCard}>
+                Previous Card
+              </button>
+            )}
+            <button className="btn" onClick={handleNextCard}>
+              Next Card
+            </button>
+          </div>
+        )}
 
-      {cards.length === 0 && <p>No cards available.</p>}
-      {currentCardIndex >= cards.length && (
-        <p>
-          No more cards available...
-          <br />
-          <Link to="/decks">Choose another deck</Link>
-        </p>
-      )}
-    </div>
+        {cards.length === 0 && <p>No cards available.</p>}
+
+        {currentCardIndex >= cards.length && (
+          <p id="finish">
+            No more cards available...
+            <br />
+            <br />
+            <Link to="/decks" id="link">
+              Choose another deck
+            </Link>
+          </p>
+        )}
+
+        <img src={img3} alt="QA" className="img3-2" />
+      </div>
+    </>
   );
 };
 
