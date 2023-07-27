@@ -57,7 +57,7 @@ export default function LoginForm({
     <form onSubmit={handleSubmit}>
       <div>
         Email:{" "}
-        <input value={email} type="password" onChange={(e) => setEmail(e.target.value)} />
+        <input value={email} type="text" onChange={(e) => setEmail(e.target.value)} />
       </div>
       <div>
         Password:{" "}

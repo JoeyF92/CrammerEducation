@@ -37,7 +37,6 @@ const MainApp = () => {
         <Route element={<ProtectedRoute><MyFlashcardsPage /></ProtectedRoute>} path="myflashcards" />
         <Route element={<ProtectedRoute><AddDeckPage /></ProtectedRoute>} path="createdeck" />
         <Route element={<ProtectedRoute><AddFlashcardPage /></ProtectedRoute>} path="createcard/:deckId" />
-        <Route element={<LogoutPage />} path="logout" />
         <Route element={<NotFoundPage />} path="*" />
       </Routes>
     </>
