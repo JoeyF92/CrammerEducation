@@ -2,6 +2,10 @@ import React from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import brainLogo from "./brain.png";
 import "./header.css";
+
+const styles = ({ isActive }) => ({
+  textDecoration: isActive ? "underline" : "none",
+});
 const Header = () => {
   let navigate = useNavigate();
   const handleLogout = () => {
@@ -21,20 +25,25 @@ const Header = () => {
               className="brain-logo"
             />
           </NavLink>
-          <NavLink to="/" activeclassnamee="activeLink">
+          <NavLink to="/" activeclassnamee="activeLink" style={styles}>
             Home
           </NavLink>
-          <NavLink to="/myflashcards" activeclassnamee="activeLink">
+          <NavLink
+            to="/myflashcards"
+            style={styles}
+            activeclassnamee="activeLink"
+          >
             My flashcards
           </NavLink>
-          <NavLink to="/createdeck" activeclassname="activeLink">
+          <NavLink to="/createdeck" style={styles} activeclassname="activeLink">
             Create flashcards
           </NavLink>
-          <NavLink to="/decks" activeclassname="activeLink">
+          <NavLink to="/decks" style={styles} activeclassname="activeLink">
             Browse
           </NavLink>
           <NavLink
             to="/login"
+            style={styles}
             onClick={handleLogout}
             activeclassname="activeLink"
           >
