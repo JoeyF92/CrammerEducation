@@ -66,7 +66,7 @@ describe("BrainBoost endpoints", () => {
 
   it("should delete a new deck", async () => {
     // Delete associated cards first
-    await request(api).delete("/decks/1/cards/1");
+    const cardDelete = await request(api).delete("/decks/1/cards/1");
     //now try delete deck
     const res = await request(api).delete("/decks/1");
     expect(res.statusCode).toEqual(204);
@@ -86,5 +86,3 @@ describe("BrainBoost endpoints", () => {
     });
   });
 });
-
-// deckRouter.get("/:id", deckController.show);
