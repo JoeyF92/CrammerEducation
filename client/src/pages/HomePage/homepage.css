@@ -1,2 +1,7 @@
-
+body {
+    font-family: Arial, sans-serif !important;
+    background-image: url('homepage-background.jpg') !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important; 
+}
   

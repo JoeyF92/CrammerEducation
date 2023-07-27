@@ -54,7 +54,7 @@ export default function HomePage() {
           </div>
         </Link>
 
-        <Link to="/users/create">
+        <Link to="/createdeck">
           <div className="browse-card">
           <div className="browse-card-content">
             <h3>Create Flashcards</h3>

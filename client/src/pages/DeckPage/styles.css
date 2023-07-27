@@ -15,7 +15,7 @@ body {
 .card-box {
   position: relative;
   border: 2px solid #333;
-  background-color: #ff9eff;
+  background-color: #ef96ba;
   padding: 20px;
   margin-bottom: 20px;
   height: 350px;
@@ -32,7 +32,7 @@ body {
 
 .card-box .question-box,
 .card-box .answer-box {
-  background-color: #ff9eff;
+  background-color: #ef96ba;
   cursor: pointer;
   display: flex;
   justify-content: center;

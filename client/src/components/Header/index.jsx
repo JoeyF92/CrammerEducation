@@ -1,17 +1,13 @@
 import React from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import brainLogo from "./brain.png";
-
 import "./header.css";
-
 const Header = () => {
   let navigate = useNavigate();
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
-
   return (
     <main>
       <header>
@@ -51,5 +47,4 @@ const Header = () => {
     </main>
   );
 };
-
 export default Header;
