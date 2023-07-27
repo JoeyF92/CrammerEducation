@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 import AddDeckPage from "./pages/AddDeckPage";
 import DeckPage from "./pages/DeckPage";
@@ -15,28 +20,78 @@ import { Header } from "./components";
 
 import "./App.css";
 
-const ProtectedRoute = ({children}) => {
-  let token = localStorage.getItem('token');
-  
+const ProtectedRoute = ({ children }) => {
+  let token = localStorage.getItem("token");
+
   if (token) {
     token = JSON.parse(token);
     return token ? children : <Navigate to="/login" replace />;
   }
   return <Navigate to="/login" replace />;
-}
+};
 
 const MainApp = () => {
   return (
     <>
       <Header />
       <Routes>
-        <Route index element={<ProtectedRoute><HomePage /></ProtectedRoute>} path="/" />
-        <Route element={<ProtectedRoute><DecksPage /></ProtectedRoute>} path="decks" />
-        <Route element={<ProtectedRoute><DeckPage /></ProtectedRoute>} path="decks/:id" />
-        <Route element={<ProtectedRoute><FlashcardPage /></ProtectedRoute>} path="cards/:id" />
-        <Route element={<ProtectedRoute><MyFlashcardsPage /></ProtectedRoute>} path="myflashcards" />
-        <Route element={<ProtectedRoute><AddDeckPage /></ProtectedRoute>} path="createdeck" />
-        <Route element={<ProtectedRoute><AddFlashcardPage /></ProtectedRoute>} path="createcard/:deckId" />
+        <Route
+          index
+          element={
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          }
+          path="/"
+        />
+        <Route
+          element={
+            <ProtectedRoute>
+              <DecksPage />
+            </ProtectedRoute>
+          }
+          path="decks"
+        />
+        <Route
+          element={
+            <ProtectedRoute>
+              <DeckPage />
+            </ProtectedRoute>
+          }
+          path="decks/:id"
+        />
+        <Route
+          element={
+            <ProtectedRoute>
+              <FlashcardPage />
+            </ProtectedRoute>
+          }
+          path="cards/:id"
+        />
+        <Route
+          element={
+            <ProtectedRoute>
+              <MyFlashcardsPage />
+            </ProtectedRoute>
+          }
+          path="myflashcards"
+        />
+        <Route
+          element={
+            <ProtectedRoute>
+              <AddDeckPage />
+            </ProtectedRoute>
+          }
+          path="createdeck"
+        />
+        <Route
+          element={
+            <ProtectedRoute>
+              <AddFlashcardPage />
+            </ProtectedRoute>
+          }
+          path="createcard/:deckId"
+        />
         <Route element={<NotFoundPage />} path="*" />
       </Routes>
     </>
@@ -54,4 +109,3 @@ const App = () => (
 );
 
 export default App;
-
