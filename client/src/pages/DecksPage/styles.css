@@ -32,6 +32,8 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  margin: 20px;
+  z-index: 1;
 }
 .card-content {
   position: relative; /* Add this line to make sure the content is positioned above the background image */
@@ -137,3 +139,28 @@
 .activeLink {
   text-decoration: underline;
 }
+
+.deck-holder {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  margin-top: 60px;
+}
+
+
+
+.deck-main h1 {
+  text-align: center !important;
+}
+
+.deck-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.move-right {
+  padding-left: 225px; 
+}
+

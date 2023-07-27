@@ -17,8 +17,8 @@ nav {
   left: 0;
   right: 0;
   height: 60px;
-  background-color: #f9d252;
-  z-index: 999;
+  background-color: #F4CF3A;
+  z-index: 999; 
   display: flex;
   justify-content: space-between;
   align-items: center;
