@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { RegisterForm } from "../../components";
+import '../LoginPage/login.css';
 
 export default function RegisterPage() {
 
@@ -9,8 +10,8 @@ export default function RegisterPage() {
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
 
-  return (
-    <div>
+  return (  
+    <div className="container">
       <h1>Please Register</h1>
       <RegisterForm 
         firstName={firstName} setFirstName={setFirstName}

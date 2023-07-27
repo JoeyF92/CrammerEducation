@@ -47,7 +47,7 @@ const createDbEnv = async () => {
             answer VARCHAR(500) NOT NULL,
             image VARCHAR(200) NULL,
             PRIMARY KEY (card_id),
-            FOREIGN KEY (deck_id) REFERENCES decks(deck_id)
+            FOREIGN KEY (deck_id) REFERENCES decks(deck_id) ON DELETE CASCADE
         )`);
   } catch (error) {
     // Handle the error

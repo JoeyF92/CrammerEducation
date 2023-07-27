@@ -37,10 +37,10 @@ const DecksPage = () => {
   }
 
   return (
-    <main className="deck-main">
+    <main>
       <h1>Decks</h1>
       <DeckFilter textFilter={textFilter} setTextFilter={setTextFilter} />
-      <div className="deck-holder">{displayDecks()}</div>
+      <div className="deck-main">{displayDecks()}</div>
     </main>
   );
 };

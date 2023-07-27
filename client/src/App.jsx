@@ -30,9 +30,9 @@ const ProtectedRoute = ({ children }) => {
   return <Navigate to="/login" replace />;
 };
 
-const App = () => {
+const MainApp = () => {
   return (
-    <Router>
+    <>
       <Header />
       <Routes>
         <Route
@@ -92,12 +92,20 @@ const App = () => {
           }
           path="createcard/:deckId"
         />
-        <Route element={<LoginPage />} path="login" />
-        <Route element={<RegisterPage />} path="register" />
         <Route element={<NotFoundPage />} path="*" />
       </Routes>
-    </Router>
+    </>
   );
 };
+
+const App = () => (
+  <Router>
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/*" element={<MainApp />} />
+    </Routes>
+  </Router>
+);
 
 export default App;

@@ -73,14 +73,18 @@ export default function RegisterForm({ firstName, setFirstName, lastName, setLas
 
   return (
     <form onSubmit={handleSubmit}>
+      <div>
       <label>First Name: <input type="text" value={firstName} onChange={handleFirstName} /></label>
-      <br />
+      </div>
+      <div>
       <label>Last Name: <input type="text" value={lastName} onChange={handleLastName} /></label>
-      <br />
+      </div>
+      <div>
       <label>Email: <input type="text" value={email} onChange={handleEmail} /></label>
-      <br />
+      </div>
+      <div>
       <label>Password: <input type="password" value={password} onChange={handlePassword} /></label>
-      <br />
+      </div>
       <input type="submit" value="Register" />
       <p className='message'>{message}</p>
     </form>
