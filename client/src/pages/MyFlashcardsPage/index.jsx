@@ -55,15 +55,15 @@ export default function MyFlashcardsPage() {
   }
 
   return (
-    <main className="deck-main">
-      <div className="deck-section-liked">
-        <h1>Liked Decks</h1>
-        <div className="deck-holder">{displayLiked()}</div>
-      </div>
-      <div className="deck-section">
-        <h1>Made by you</h1>
-        <div className="deck-holder">{displayMadeByYou()}</div>
-      </div>
-    </main>
+    <main className="deck-main deck-main-offset move-right">
+    <h1 className="deck-header">Liked Decks</h1>
+    <div className="deck-section-liked">
+      <div className="deck-holder">{displayLiked()}</div>
+    </div>
+    <h1 className="deck-header">Made by you</h1>
+    <div className="deck-section">
+      <div className="deck-holder">{displayMadeByYou()}</div>
+    </div>
+  </main>
   );
 }
