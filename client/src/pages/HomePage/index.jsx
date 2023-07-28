@@ -12,7 +12,7 @@ export default function HomePage() {
       //this route already orders the decks by number of likes
       const response = await fetch(`http://localhost:3000/decks`);
       const data = await response.json();
-      const trendingDecks = data.slice(0, 6);
+      const trendingDecks = data.slice(0, 4);
       setTrending(trendingDecks);
     }
     loadTrending();
