@@ -9,66 +9,61 @@ export default function MyFlashcardsPage() {
 
   useEffect(() => {
     async function loadLiked() {
-      const response = await fetch(`http://localhost:3000/users/${id}/liked`)
-      const data = await response.json()
+      const response = await fetch(`http://localhost:3000/users/${id}/liked`);
+      const data = await response.json();
       if (data !== likedDecks) {
-      setLikedDecks(data)
-    }}
-    loadLiked()
-  }, [likedDecks])
+        setLikedDecks(data);
+      }
+    }
+    loadLiked();
+  }, [likedDecks]);
 
   useEffect(() => {
     async function loadMadeByYou() {
-      const response = await fetch(`http://localhost:3000/decks`)
+      const response = await fetch(`http://localhost:3000/decks`);
       const decks = await response.json();
       const filteredDecks = decks.filter((deck) => deck.user_id == id);
-      setMadeByYou(filteredDecks)
+      setMadeByYou(filteredDecks);
     }
-    loadMadeByYou()
-  }, [])
+    loadMadeByYou();
+  }, []);
 
   function displayLiked() {
-    return likedDecks
-                  .map(d => 
-                    <DeckCard
-                    key={d.id} 
-                        id={d.id} 
-                        name={d.name}
-                        subject={d.subject}
-                        tags={d.tags}
-                        likes={d.likes}
-                        image={d.image} 
-                    />
-                  )
+    return likedDecks.map((d) => (
+      <DeckCard
+        key={d.id}
+        id={d.id}
+        name={d.name}
+        subject={d.subject}
+        tags={d.tags}
+        likes={d.likes}
+      />
+    ));
   }
 
   function displayMadeByYou() {
-    return madeByYou
-                  .map(d => 
-                    <DeckCard
-                    key={d.id} 
-                        id={d.id} 
-                        name={d.name}
-                        subject={d.subject}
-                        tags={d.tags}
-                        likes={d.likes}
-                        image={d.image} 
-                    />
-                  )
+    return madeByYou.map((d) => (
+      <DeckCard
+        key={d.id}
+        id={d.id}
+        name={d.name}
+        subject={d.subject}
+        tags={d.tags}
+        likes={d.likes}
+      />
+    ));
   }
 
   return (
-    <main className="deck-main">
-    <h1>Liked Decks</h1>
-    <div className="deck-holder">
-        { displayLiked() }
+    <main className="deck-main deck-main-offset move-right">
+    <h1 className="deck-header">Liked Decks</h1>
+    <div className="deck-section-liked">
+      <div className="deck-holder">{displayLiked()}</div>
     </div>
-    <h1>Made by you</h1>
-    <div className="deck-holder">
-        { displayMadeByYou() }
+    <h1 className="deck-header">Made by you</h1>
+    <div className="deck-section">
+      <div className="deck-holder">{displayMadeByYou()}</div>
     </div>
-</main>
-  
-  )
-
+  </main>
+  );
 }

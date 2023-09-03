@@ -76,7 +76,7 @@ body {
 
 .btn {
   margin: 20px 10px;
-  background-color: #ff9eff;
+  background-color: #ef96ba;
   border: none;
   color: #5e239d;
   padding: 15px;
@@ -154,12 +154,12 @@ body {
 .img3-1 {
   position: absolute;
   bottom: 350px;
-  right: 10px;
-  width: 400px;
+  right: -100px;
+  width: 600px;
 }
 .img3-2 {
   position: absolute;
-  bottom: 100px;
-  left: 10px;
-  width: 400px;
+  bottom: 0px;
+  left: -50px;
+  width: 600px;
 }

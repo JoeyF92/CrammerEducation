@@ -112,7 +112,8 @@ const DeckPage = () => {
 
         {currentCardIndex >= cards.length && (
           <p id="finish">
-            No more cards available...
+            Congratulations! <br />
+            You did it! Well done on completing the game with words!
             <br />
             <br />
             <Link to="/decks" id="link">

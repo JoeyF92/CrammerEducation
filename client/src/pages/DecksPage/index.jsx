@@ -31,14 +31,13 @@ const DecksPage = () => {
           subject={d.subject}
           tags={d.tags}
           likes={d.likes}
-          image={d.image}
         />
       ));
   }
 
   return (
     <main>
-      <h1>Decks</h1>
+      <h1 id="decks">Decks</h1>
       <DeckFilter textFilter={textFilter} setTextFilter={setTextFilter} />
       <div className="deck-main">{displayDecks()}</div>
     </main>

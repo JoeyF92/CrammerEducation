@@ -95,15 +95,11 @@ const CreateDeckForm = () => {
         <div>
           Tags: <input value={tags} onChange={(e) => setTags(e.target.value)} />
         </div>
-        <div>
-          Image URL:{" "}
-          <input value={image} onChange={(e) => setImage(e.target.value)} />
-        </div>
+
         <button type="submit">Create Deck</button>
         <p className="message">{message}</p>
       </form>
       <img src={img} alt="brains" className="brains" />
-      {/* <img src={img} alt="brains" className="brains-mirrored" /> */}
     </>
   );
 };
